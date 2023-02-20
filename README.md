@@ -4,15 +4,17 @@
 
 #Non-Functional Requirements
 
-     RNF01. Build every application using Adonis JS
+     RNF01. Build every application using Nest JS
 
-     RNF02. Build database based on JSON (previous sended)
+     RNF02. Build database with MongoDB
 
      RNF03. Use validators
 
-     RNF04. Use Docker to keep the application inside a container.
+     RNF04. Use TypeORM
 
-     RNF05. Tests for Users, Games and Bets.
+     RNF05. Use Docker to keep the application inside a container.
+
+     RNF06. Tests for Users, Games and Bets.
 
 #Functional Requirements
 
@@ -26,6 +28,6 @@
 
      RF05. CRUD of bets
 
-     RF06. Create access profiles (admin and player) and determine private routes <-
+     RF06. Create access profiles (admin and player) and determine private routes
 
      RF07. Create a scheduler to run every day at 09:00, triggering emails only to players who haven't bet within 1 week prior to the current day inviting them to place a bet
