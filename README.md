@@ -24,9 +24,9 @@
 
      RF03. CRUD of users
 
-     RF04.CRUD of games
+     RF04.CRUD of games (including: filter, pagination)
 
-     RF05. CRUD of bets
+     RF05. CRUD of bets (including: filter, pagination)
 
      RF06. Create access profiles (admin and player) and determine private routes
 
