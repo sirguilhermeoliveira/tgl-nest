@@ -1,11 +1,11 @@
-<mxfile host="app.diagrams.net" modified="2023-02-21T19:18:44.184Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" etag="sDTHMA9TznmSVqGvmL4Y" version="20.8.22" type="github">
+<mxfile host="app.diagrams.net" modified="2023-02-21T19:20:32.556Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" etag="3mxalRrT2akfoJ3o7kG0" version="20.8.22" type="github">
   <diagram name="Page-1" id="9f46799a-70d6-7492-0946-bef42562c5a5">
     <mxGraphModel dx="2074" dy="764" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="UWeG_iMeRHgUMjfAr7Hb-1" value="users" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="40" y="80" width="200" height="200" as="geometry" />
+          <mxGeometry x="40" y="80" width="200" height="260" as="geometry" />
         </mxCell>
         <mxCell id="UWeG_iMeRHgUMjfAr7Hb-2" value="&amp;nbsp; id: number" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="UWeG_iMeRHgUMjfAr7Hb-1">
           <mxGeometry x="-5" y="30" width="90" height="30" as="geometry" />
@@ -19,6 +19,15 @@
         <mxCell id="UWeG_iMeRHgUMjfAr7Hb-32" value="&amp;nbsp; &amp;nbsp; reset_token: string" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="UWeG_iMeRHgUMjfAr7Hb-1">
           <mxGeometry x="-15" y="120" width="140" height="30" as="geometry" />
         </mxCell>
+        <mxCell id="UWeG_iMeRHgUMjfAr7Hb-55" value="&amp;nbsp; &amp;nbsp; reset_token_created_at: string" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="UWeG_iMeRHgUMjfAr7Hb-1">
+          <mxGeometry x="-15" y="150" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UWeG_iMeRHgUMjfAr7Hb-56" value="createAt: DateTime" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="UWeG_iMeRHgUMjfAr7Hb-1">
+          <mxGeometry y="180" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UWeG_iMeRHgUMjfAr7Hb-54" value="updatedAt: DateTime" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="UWeG_iMeRHgUMjfAr7Hb-1">
+          <mxGeometry y="210" width="140" height="30" as="geometry" />
+        </mxCell>
         <mxCell id="UWeG_iMeRHgUMjfAr7Hb-19" value="admin" style="swimlane;whiteSpace=wrap;html=1;startSize=23;" vertex="1" parent="1">
           <mxGeometry x="40" y="520" width="200" height="200" as="geometry" />
         </mxCell>
@@ -30,6 +39,12 @@
         </mxCell>
         <mxCell id="UWeG_iMeRHgUMjfAr7Hb-23" value="username: string" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="UWeG_iMeRHgUMjfAr7Hb-19">
           <mxGeometry y="60" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UWeG_iMeRHgUMjfAr7Hb-58" value="createAt: DateTime" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="UWeG_iMeRHgUMjfAr7Hb-19">
+          <mxGeometry y="120" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UWeG_iMeRHgUMjfAr7Hb-59" value="updatedAt: DateTime" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="UWeG_iMeRHgUMjfAr7Hb-19">
+          <mxGeometry y="150" width="140" height="30" as="geometry" />
         </mxCell>
         <mxCell id="UWeG_iMeRHgUMjfAr7Hb-24" value="games" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="550" y="80" width="200" height="330" as="geometry" />
@@ -61,7 +76,7 @@
         <mxCell id="UWeG_iMeRHgUMjfAr7Hb-39" value="createAt: DateTime" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="UWeG_iMeRHgUMjfAr7Hb-24">
           <mxGeometry x="-5" y="270" width="130" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="UWeG_iMeRHgUMjfAr7Hb-54" value="updatedAt: DateTime" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="UWeG_iMeRHgUMjfAr7Hb-24">
+        <mxCell id="UWeG_iMeRHgUMjfAr7Hb-57" value="updatedAt: DateTime" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="UWeG_iMeRHgUMjfAr7Hb-24">
           <mxGeometry x="-5" y="300" width="140" height="30" as="geometry" />
         </mxCell>
         <mxCell id="UWeG_iMeRHgUMjfAr7Hb-28" value="bets" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
