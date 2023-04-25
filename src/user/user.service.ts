@@ -1,11 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
+import { PrismaService } from 'src/prisma/prisma.service';
+
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
   constructor(private readonly prisma: PrismaService) {}
+
   async create(createUserDto: CreateUserDto) {
     const data = {
       ...createUserDto,
@@ -19,6 +22,29 @@ export class UserService {
       password: undefined,
     };
   }
+
+  async changePassword(id: number, user: UpdateUserDto) {
+    const userPayload = await this.findOne(id);
+    const isPasswordValid = await bcrypt.compare(user.password, userPayload.password);
+
+    if (!isPasswordValid) {
+      throw new Error('User password and new user password doenst match.');
+    }
+    await this.prisma.user.update({
+      where: { id },
+      data: {
+        password: await bcrypt.hash(user.newPassword, 10),
+      },
+    });
+    return Promise.resolve({ message: 'Change password succesfully!' });
+  }
+
+  findOne(id: number) {
+    return this.prisma.user.findUnique({
+      where: { id },
+    });
+  }
+
   findByEmail(email: string) {
     return this.prisma.user.findUnique({
       where: { email },
