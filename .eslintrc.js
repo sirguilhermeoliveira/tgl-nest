@@ -5,15 +5,8 @@ module.exports = {
     tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
-  plugins: [
-    '@typescript-eslint/eslint-plugin',
-    'simple-import-sort',
-    'unused-imports',
-  ],
-  extends: [
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
-  ],
+  plugins: ['@typescript-eslint/eslint-plugin', 'unused-imports', 'simple-import-sort'],
+  extends: ['plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
   root: true,
   env: {
     node: true,
@@ -25,21 +18,13 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-    'prettier/prettier': [
+    'unused-imports/no-unused-imports': 'error',
+    'simple-import-sort/imports': [
       'error',
       {
-        endOfLine: 'auto',
+        groups: [['^react'], ['^antd'], ['^@?\\w'], ['@/(.*)'], ['^[./]']],
       },
     ],
-    'unused-imports/no-unused-imports-ts': ['error'],
-    'unused-imports/no-unused-vars-ts': [
-      'warn',
-      {
-        vars: 'local',
-        args: 'after-used',
-      },
-    ],
-    'simple-import-sort/imports': ['error'],
     'simple-import-sort/exports': 'error',
   },
 };
