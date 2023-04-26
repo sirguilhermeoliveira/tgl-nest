@@ -23,6 +23,12 @@ export class UserService {
     };
   }
 
+  async delete(id: number) {
+    return await this.prisma.user.delete({
+      where: { id },
+    });
+  }
+
   async changePassword(id: number, user: UpdateUserDto) {
     const userPayload = await this.findOne(id);
     const isPasswordValid = await bcrypt.compare(user.password, userPayload.password);
@@ -37,6 +43,10 @@ export class UserService {
       },
     });
     return Promise.resolve({ message: 'Change password succesfully!' });
+  }
+
+  async findAll() {
+    return this.prisma.user.findMany();
   }
 
   findOne(id: number) {

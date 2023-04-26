@@ -1,9 +1,16 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsString, Matches, MaxLength, MinLength } from 'class-validator';
+import { IsBoolean, IsEmail, IsString, Matches, MaxLength, MinLength } from 'class-validator';
 
 import { User } from '../entities/user.entity';
 
 export class CreateUserDto extends User {
+  @IsBoolean()
+  @ApiProperty({
+    example: 'true or false',
+    description: `Is user admin or not.`,
+  })
+  isAdmin?: boolean;
+
   @IsEmail()
   @ApiProperty({
     example: 'guilherme@gmail.com',
