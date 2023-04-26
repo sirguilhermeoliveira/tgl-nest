@@ -18,3 +18,13 @@ model User {
 
   name String
 }
+
+model Admin {
+  id        Int      @id @default(autoincrement())
+  isAdmin   Boolean? @default(false)
+  
+  email     String   @unique
+  password  String
+
+  name      String
+}
