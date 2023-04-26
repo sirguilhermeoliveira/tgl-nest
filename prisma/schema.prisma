@@ -12,19 +12,10 @@ datasource db {
 
 model User {
   id Int @id @default(autoincrement())
+    isAdmin   Boolean? @default(false)
 
   email    String @unique
   password String
 
   name String
-}
-
-model Admin {
-  id        Int      @id @default(autoincrement())
-  isAdmin   Boolean? @default(false)
-  
-  email     String   @unique
-  password  String
-
-  name      String
 }
