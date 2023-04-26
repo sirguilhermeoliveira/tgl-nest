@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { MailerService } from '@nestjs-modules/mailer';
 import * as bcrypt from 'bcrypt';
 import { PrismaService } from 'src/prisma/prisma.service';
 
@@ -7,20 +8,38 @@ import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly mailerService: MailerService,
+  ) {}
 
   async create(createUserDto: CreateUserDto) {
-    const data = {
-      ...createUserDto,
-      password: await bcrypt.hash(createUserDto.password, 10),
-    };
-    const createdUser = await this.prisma.user.create({
-      data,
-    });
-    return {
-      ...createdUser,
-      password: undefined,
-    };
+    try {
+      const data = {
+        ...createUserDto,
+        password: await bcrypt.hash(createUserDto.password, 10),
+      };
+      await this.prisma.user.create({
+        data,
+      });
+
+      const userName = createUserDto.name;
+
+      await this.mailerService.sendMail({
+        to: createUserDto.email,
+        from: 'noreply@nestjs.com',
+        subject: 'Welcome to TGL Nest! ',
+        template: 'createdEmail',
+        context: { name: userName },
+      });
+      if (createUserDto.isAdmin === false) {
+        return Promise.resolve({ message: 'User created succesfully!' });
+      } else {
+        return Promise.resolve({ message: 'Admin created succesfully!' });
+      }
+    } catch {
+      throw new Error('Failed to create user!');
+    }
   }
 
   async delete(id: number) {
