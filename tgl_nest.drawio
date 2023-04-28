@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-04-28T07:51:08.202Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="wA60CXMbu0CPb_W9Sn_w" version="21.2.3" type="github">
+<mxfile host="app.diagrams.net" modified="2023-04-28T07:51:27.184Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="1heyJ1VJ4glHFMsSAUTZ" version="21.2.3" type="github">
   <diagram name="Page-1" id="9f46799a-70d6-7492-0946-bef42562c5a5">
     <mxGraphModel dx="1032" dy="521" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
@@ -64,8 +64,8 @@
         <mxCell id="UWeG_iMeRHgUMjfAr7Hb-31" value="game_id: number" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="UWeG_iMeRHgUMjfAr7Hb-28" vertex="1">
           <mxGeometry x="-5" y="90" width="120" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="KX8Yls4MQWYgz6l4JdFZ-3" value="bet_numbers: string" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="UWeG_iMeRHgUMjfAr7Hb-28">
-          <mxGeometry y="120" width="130" height="30" as="geometry" />
+        <mxCell id="KX8Yls4MQWYgz6l4JdFZ-3" value="bet_numbers: number" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="UWeG_iMeRHgUMjfAr7Hb-28">
+          <mxGeometry y="120" width="140" height="30" as="geometry" />
         </mxCell>
         <mxCell id="KX8Yls4MQWYgz6l4JdFZ-14" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
