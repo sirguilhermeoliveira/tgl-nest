@@ -1,18 +1,36 @@
-import { Injectable } from '@nestjs/common';
+import { Body, Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 import { CreateBetDto } from './dto/create-bet.dto';
 
 @Injectable()
 export class BetsService {
-  create(createBetDto: CreateBetDto) {
-    return 'This action adds a new bet';
+  constructor(private readonly prisma: PrismaService) {}
+  async create(@Body() createBetDto: CreateBetDto) {
+    /*     await this.prisma.bet.create({
+      data: createBetDto,
+    }); */
+    return Promise.resolve({ message: 'Bet created succesfully!' });
   }
 
-  findAll() {
-    return `This action returns all bets`;
+  async findAll() {
+    return this.prisma.bet.findMany();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} bet`;
+  findOne(id: number) {
+    return this.prisma.bet.findUnique({
+      where: { id },
+    });
+  }
+
+  async remove(id: number) {
+    const userExistsValidation = await this.findOne(id);
+    if (!userExistsValidation) {
+      throw new Error('User doesnt exist on database.');
+    }
+    await this.prisma.bet.delete({
+      where: { id },
+    });
+    return Promise.resolve({ message: 'Bet deleted succesfully!' });
   }
 }

@@ -14,10 +14,10 @@ export class GamesService {
   }
 
   async findAll() {
-    return this.prisma.user.findMany();
+    return this.prisma.game.findMany();
   }
   async remove(id: number) {
-    await this.prisma.user.delete({
+    await this.prisma.game.delete({
       where: { id },
     });
     return Promise.resolve({ message: 'Game deleted succesfully!' });

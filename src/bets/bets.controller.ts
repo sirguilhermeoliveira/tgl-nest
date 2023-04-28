@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { IsAdmin } from 'src/auth/decorators/is-admin.decorator';
 
 import { BetsService } from './bets.service';
 import { CreateBetDto } from './dto/create-bet.dto';
@@ -12,11 +13,13 @@ export class BetsController {
     return this.betsService.create(createBetDto);
   }
 
+  @IsAdmin()
   @Get()
   findAll() {
     return this.betsService.findAll();
   }
 
+  @IsAdmin()
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.betsService.remove(+id);
