@@ -10,6 +10,7 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
 import { GamesModule } from './games/games.module';
+import { BetsModule } from './bets/bets.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { GamesModule } from './games/games.module';
       },
     }),
     GamesModule,
+    BetsModule,
   ],
   controllers: [AppController],
   providers: [
