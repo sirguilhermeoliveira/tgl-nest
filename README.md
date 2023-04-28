@@ -1,73 +1,61 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+## Template React Native
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# Template using react native with common libs, and a pre-made architecture.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+# 📋 Requirements for running project without Docker
 
-## Description
+Node 14.18.0+
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+yarn
 
-## Installation
+or open with docker
 
-```bash
-$ yarn install
-```
+# 🛠️ Run project
 
-## Running the app
+In terminal use: yarn start:dev
 
-```bash
-# development
-$ yarn run start
+# 🚀 Libs //To do
 
-# watch mode
-$ yarn run start:dev
+# 📌 Files pattern //To do
 
-# production mode
-$ yarn run start:prod
-```
+# 📦 Commits pattern //To do
 
-## Test
+[type]: [description]
 
-```bash
-# unit tests
-$ yarn run test
+**test**: indicates any type of creation or alteration of test codes. Example: Creating unit tests.
 
-# e2e tests
-$ yarn run test:e2e
+**feat**: indicates the development of a new feature to the project. Example: Addition of a service, functionality, endpoint, etc.
 
-# test coverage
-$ yarn run test:cov
-```
+**refactor**: used when there is a code refactoring that does not have any impact on the system's business logic/rules. Example: Code changes after a code review
 
-## Support
+**style**: employed when there are formatting and style changes to the code that do not change the system in any way.
+Example: Change style-guide, change lint convention, fix indentations, remove whitespace, remove comments, etc..
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+**fix**: used when correcting errors that are generating bugs in the system.
+Example: Applying handling to a function that is not having the expected behavior and returning an error.
 
-## Stay in touch
+**chore**: indicates design changes that do not affect system or test files. These are developmental changes.
+Example: Change eslint rules, add prettier, add more file extensions to .gitignore
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+**docs**: used when there are changes to the project documentation.
+Example: add information in the API documentation, change the README, etc.
 
-## License
+**build**: used to indicate changes that affect the project's build process or external dependencies.
+Example: Gulp, add/remove npm dependencies, etc.
 
-Nest is [MIT licensed](LICENSE).
+**perf**: indicates a change that improved system performance.
+Example: change ForEach to while, improve the database query, etc.
+
+**ci**:
+used for changes in CI configuration files.
+Example: Circle, Travis, BrowserStack, etc.
+
+**revert**: indicates reverting a previous commit.
+
+# ✔️ Running with Docker
+
+Install docker
+
+docker build -t nest-auth-image .
+
+docker run -p 3000:3000 nest-auth-image
