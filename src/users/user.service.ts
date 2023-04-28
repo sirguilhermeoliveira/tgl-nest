@@ -98,9 +98,11 @@ export class UserService {
   }
 
   async delete(id: number) {
-    return await this.prisma.user.delete({
+    await this.prisma.user.delete({
       where: { id },
     });
+
+    return Promise.resolve({ message: 'Deleted Succesfully!' });
   }
 
   async changePassword(id: number, user: UpdateUserDto) {

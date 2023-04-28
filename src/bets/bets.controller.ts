@@ -1,5 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { IsAdmin } from 'src/auth/decorators/is-admin.decorator';
+import { User } from 'src/users/entities/user.entity';
 
 import { BetsService } from './bets.service';
 import { CreateBetDto } from './dto/create-bet.dto';
@@ -9,14 +11,20 @@ export class BetsController {
   constructor(private readonly betsService: BetsService) {}
 
   @Post()
-  create(@Body() createBetDto: CreateBetDto) {
-    return this.betsService.create(createBetDto);
+  create(@Body() createBetDto: CreateBetDto, @CurrentUser() user: User) {
+    return this.betsService.create(createBetDto, user);
   }
 
   @IsAdmin()
   @Get()
-  findAll() {
-    return this.betsService.findAll();
+  findAllBets() {
+    return this.betsService.findAllBets();
+  }
+
+  @IsAdmin()
+  @Get(':game_id/:user_id')
+  findAllGameBets(@Param('game_id') game_id: string, @Param('user_id') user_id: string) {
+    return this.betsService.findAllGameBets(+game_id, +user_id);
   }
 
   @IsAdmin()

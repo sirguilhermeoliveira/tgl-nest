@@ -1,15 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsString } from 'class-validator';
+import { IsNumber } from 'class-validator';
 
-import { Bet } from '../entities/bet.entity';
-
-export class CreateBetDto extends Bet {
+export class CreateBetDto {
   @ApiProperty({
     example: '80',
     description: `Bets limit range you can choose on a bet.`,
   })
-  @IsString()
-  bet_numbers: string;
+  @IsNumber({}, { each: true })
+  bet_numbers: number[] | string;
 
   @ApiProperty({
     example: '1',
