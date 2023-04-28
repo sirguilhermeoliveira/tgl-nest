@@ -21,3 +21,23 @@ model User {
 
   name String
 }
+
+model Game {
+  id Int @id @default(autoincrement())
+  title String
+  description String
+  color String
+
+  bet_range Number
+  price Number
+  max_bet_numbers Number
+}
+
+model Bet {
+  id Int @id @default(autoincrement())
+
+  user_id Number
+  game_id Number
+
+  bet_numbers Number
+}

@@ -1,32 +1,26 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { GamesService } from './games.service';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { IsAdmin } from 'src/auth/decorators/is-admin.decorator';
+
 import { CreateGameDto } from './dto/create-game.dto';
-import { UpdateGameDto } from './dto/update-game.dto';
+import { GamesService } from './games.service';
 
 @Controller('games')
 export class GamesController {
   constructor(private readonly gamesService: GamesService) {}
 
+  @IsAdmin()
   @Post()
   create(@Body() createGameDto: CreateGameDto) {
     return this.gamesService.create(createGameDto);
   }
 
+  @IsAdmin()
   @Get()
   findAll() {
     return this.gamesService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.gamesService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateGameDto: UpdateGameDto) {
-    return this.gamesService.update(+id, updateGameDto);
-  }
-
+  @IsAdmin()
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.gamesService.remove(+id);
