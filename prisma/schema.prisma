@@ -13,7 +13,8 @@ datasource db {
 model User {
   id Int @id @default(autoincrement())
   isAdmin   Boolean? @default(false)
-  refresh_token String?
+  forgot_password_token String? @default(null)
+  forgot_password_expirationTime DateTime? @default(null)
 
   email    String @unique
   password String

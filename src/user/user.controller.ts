@@ -13,6 +13,20 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @IsPublic()
+  @Post('/forgot-password')
+  sendCode(@Body() email: { email: string }) {
+    return this.userService.sendCode(email);
+  }
+
+  @IsPublic()
+  @Post('/reset-password')
+  async resetPassword(
+    @Body() { email, code, newPassword }: { email: string; code: string; newPassword: string },
+  ) {
+    return this.userService.resetPassword(email, code, newPassword);
+  }
+
+  @IsPublic()
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);

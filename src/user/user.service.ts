@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Body, Injectable } from '@nestjs/common';
 import { MailerService } from '@nestjs-modules/mailer';
 import * as bcrypt from 'bcrypt';
+import { randomBytes } from 'crypto';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 import { CreateUserDto } from './dto/create-user.dto';
@@ -12,6 +13,60 @@ export class UserService {
     private readonly prisma: PrismaService,
     private readonly mailerService: MailerService,
   ) {}
+
+  async resetPassword(@Body() email: string, code: string, newPassword: string) {
+    const user = await this.findByEmail(email);
+    const isCodeValid = await bcrypt.compare(code, user.forgot_password_token);
+    if (user.forgot_password_expirationTime < new Date()) {
+      throw new Error('Expired code.');
+    }
+    if (!user) {
+      throw new Error('User doenst exist on database.');
+    }
+    if (!isCodeValid) {
+      throw new Error('Code is invalid.');
+    }
+
+    await this.prisma.user.update({
+      where: {
+        email,
+      },
+      data: {
+        forgot_password_token: null,
+        forgot_password_expirationTime: null,
+        password: await bcrypt.hash(newPassword, 10),
+      },
+    });
+
+    return Promise.resolve({ message: 'Password reset succesfully!' });
+  }
+  async sendCode(@Body() { email }: { email: string }) {
+    const code = randomBytes(4).toString('hex');
+    const user = await this.findByEmail(email);
+    if (!user) {
+      throw new Error('User doenst exist on database.');
+    }
+    const expirationTime = new Date();
+    expirationTime.setMinutes(expirationTime.getMinutes() + 10);
+    await this.prisma.user.update({
+      where: { email },
+      data: {
+        ...user,
+        forgot_password_token: await bcrypt.hash(code, 10),
+        forgot_password_expirationTime: expirationTime,
+      },
+    });
+
+    await this.mailerService.sendMail({
+      to: email,
+      from: 'noreply@nestjs.com',
+      subject: 'Welcome to TGL Nest! ',
+      template: 'forgotPassword',
+      context: { forgot_password_token: code, forgot_password_expirationTime: expirationTime },
+    });
+
+    return Promise.resolve({ message: `Code sended succesfully for ${email}` });
+  }
 
   async create(createUserDto: CreateUserDto) {
     try {
