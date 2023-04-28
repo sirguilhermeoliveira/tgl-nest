@@ -7,9 +7,9 @@ import { CreateBetDto } from './dto/create-bet.dto';
 export class BetsService {
   constructor(private readonly prisma: PrismaService) {}
   async create(@Body() createBetDto: CreateBetDto) {
-    /*     await this.prisma.bet.create({
+    await this.prisma.bet.create({
       data: createBetDto,
-    }); */
+    });
     return Promise.resolve({ message: 'Bet created succesfully!' });
   }
 

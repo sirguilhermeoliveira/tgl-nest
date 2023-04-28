@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+
 import { BetsService } from './bets.service';
 
 describe('BetsService', () => {

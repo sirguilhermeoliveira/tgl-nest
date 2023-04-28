@@ -39,5 +39,5 @@ model Bet {
   user_id Int
   game_id Int
 
-  bet_numbers Json
+  bet_numbers Int
 }

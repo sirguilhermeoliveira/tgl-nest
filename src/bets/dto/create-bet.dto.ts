@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsArray } from 'class-validator';
+import { IsNumber } from 'class-validator';
 
 import { Bet } from '../entities/bet.entity';
 
@@ -8,6 +8,20 @@ export class CreateBetDto extends Bet {
     example: '80',
     description: `Bets limit range you can choose on a bet.`,
   })
-  @IsArray()
-  bet_numbers: Array<number>;
+  @IsNumber()
+  bet_numbers: number;
+
+  @ApiProperty({
+    example: '1',
+    description: `Own user id.`,
+  })
+  @IsNumber()
+  user_id: number;
+
+  @ApiProperty({
+    example: '1',
+    description: `Choose game id.`,
+  })
+  @IsNumber()
+  game_id: number;
 }
