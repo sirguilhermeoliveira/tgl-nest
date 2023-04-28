@@ -13,8 +13,8 @@ datasource db {
 model User {
   id Int @id @default(autoincrement())
   isAdmin   Boolean? @default(false)
-  forgot_password_token String? @default(null)
-  forgot_password_expirationTime DateTime? @default(null)
+  forgot_password_token String?
+  forgot_password_expirationTime DateTime?
 
   email    String @unique
   password String
@@ -28,16 +28,16 @@ model Game {
   description String
   color String
 
-  bet_range Number
-  price Number
-  max_bet_numbers Number
+  bet_range Int
+  price Float
+  max_bet_numbers Int
 }
 
 model Bet {
   id Int @id @default(autoincrement())
 
-  user_id Number
-  game_id Number
+  user_id Int
+  game_id Int
 
-  bet_numbers Number
+  bet_numbers Int
 }
