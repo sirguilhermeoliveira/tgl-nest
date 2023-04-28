@@ -6,6 +6,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './entities/user.entity';
 
 @Injectable()
 export class UserService {
@@ -97,9 +98,15 @@ export class UserService {
     }
   }
 
-  async delete(id: number) {
+  async delete(id: number, user: User) {
+    if (user.id === id) {
+      throw new Error('Cant delete the user you are using!');
+    }
     await this.prisma.user.delete({
       where: { id },
+    });
+    await this.prisma.bet.deleteMany({
+      where: { user_id: id },
     });
 
     return Promise.resolve({ message: 'Deleted Succesfully!' });

@@ -1,10 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { IsAdmin } from 'src/auth/decorators/is-admin.decorator';
 import { IsPublic } from 'src/auth/decorators/is-public.decorator';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './entities/user.entity';
 import { UserService } from './user.service';
 
 @Controller('users')
@@ -40,8 +42,8 @@ export class UserController {
 
   @IsAdmin()
   @Delete('/delete/:id')
-  delete(@Param('id') id: string) {
-    return this.userService.delete(+id);
+  delete(@Param('id') id: string, @CurrentUser() user: User) {
+    return this.userService.delete(+id, user);
   }
 
   @Patch('/change-password/:id')
