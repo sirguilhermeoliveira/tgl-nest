@@ -7,9 +7,6 @@ import { CreateBetDto } from './dto/create-bet.dto';
 export class BetsService {
   constructor(private readonly prisma: PrismaService) {}
   async create(@Body() createBetDto: CreateBetDto, user) {
-    console.log(user.id);
-    console.log(createBetDto.user_id);
-    return;
     if (user.id !== createBetDto.user_id) {
       throw new Error('Cant bet on a user that isnt yours.');
     }
