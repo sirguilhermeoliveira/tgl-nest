@@ -1,16 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
-
-import { AppService } from './app.service';
-import { CurrentUser } from './auth/decorators/current-user.decorator';
+import { Controller } from '@nestjs/common';
 
 @Controller()
-@ApiTags()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
-
-  @Get('me')
-  getMe(@CurrentUser() user): string {
-    return user;
-  }
-}
+export class AppController {}
