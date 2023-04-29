@@ -7,19 +7,29 @@ import { CreateGameDto } from './dto/create-game.dto';
 export class GamesService {
   constructor(private readonly prisma: PrismaService) {}
   async create(@Body() createGameDto: CreateGameDto) {
-    await this.prisma.game.create({
-      data: createGameDto,
-    });
-    return Promise.resolve({ message: 'Game created succesfully!' });
+    try {
+      await this.prisma.game.create({
+        data: createGameDto,
+      });
+
+      return { message: 'Game created successfully!' };
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 
-  async findAll() {
+  findAll() {
     return this.prisma.game.findMany();
   }
   async remove(id: number) {
-    await this.prisma.game.delete({
-      where: { id },
-    });
-    return Promise.resolve({ message: 'Game deleted succesfully!' });
+    try {
+      await this.prisma.game.delete({
+        where: { id },
+      });
+
+      return { message: 'Game deleted successfully!' };
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 }
