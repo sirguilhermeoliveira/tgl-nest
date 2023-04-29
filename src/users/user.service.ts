@@ -16,57 +16,75 @@ export class UserService {
   ) {}
 
   async resetPassword(@Body() email: string, code: string, newPassword: string) {
-    const user = await this.findByEmail(email);
-    const isCodeValid = await bcrypt.compare(code, user.forgot_password_token);
-    if (user.forgot_password_expirationTime < new Date()) {
-      throw new Error('Expired code.');
-    }
-    if (!user) {
-      throw new Error('User doenst exist on database.');
-    }
-    if (!isCodeValid) {
-      throw new Error('Code is invalid.');
-    }
+    try {
+      const user = await this.findByEmail(email);
 
-    await this.prisma.user.update({
-      where: {
-        email,
-      },
-      data: {
-        forgot_password_token: null,
-        forgot_password_expirationTime: null,
-        password: await bcrypt.hash(newPassword, 10),
-      },
-    });
+      if (!user) {
+        throw new Error("User doesn't exist in the database.");
+      }
 
-    return Promise.resolve({ message: 'Password reset succesfully!' });
+      const isCodeValid = await bcrypt.compare(code, user.forgot_password_token);
+
+      if (!isCodeValid) {
+        throw new Error('Code is invalid.');
+      }
+
+      if (user.forgot_password_expirationTime < new Date()) {
+        throw new Error('Expired code.');
+      }
+
+      await this.prisma.user.update({
+        where: {
+          email,
+        },
+        data: {
+          forgot_password_token: null,
+          forgot_password_expirationTime: null,
+          password: await bcrypt.hash(newPassword, 10),
+        },
+      });
+
+      return { message: 'Password reset successfully!' };
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
   async sendCode(@Body() { email }: { email: string }) {
-    const code = randomBytes(4).toString('hex');
-    const user = await this.findByEmail(email);
-    if (!user) {
-      throw new Error('User doenst exist on database.');
+    try {
+      const code = randomBytes(4).toString('hex');
+      const user = await this.findByEmail(email);
+
+      if (!user) {
+        throw new Error("User doesn't exist in the database.");
+      }
+
+      const expirationTime = new Date();
+      expirationTime.setMinutes(expirationTime.getMinutes() + 10);
+
+      await this.prisma.user.update({
+        where: { email },
+        data: {
+          ...user,
+          forgot_password_token: await bcrypt.hash(code, 10),
+          forgot_password_expirationTime: expirationTime,
+        },
+      });
+
+      await this.mailerService.sendMail({
+        to: email,
+        from: 'noreply@nestjs.com',
+        subject: 'Welcome to TGL Nest!',
+        template: 'forgotPassword',
+        context: {
+          forgot_password_token: code,
+          forgot_password_expirationTime: expirationTime,
+        },
+      });
+
+      return { message: `Code sent successfully for ${email}` };
+    } catch (error) {
+      throw new Error(error.message);
     }
-    const expirationTime = new Date();
-    expirationTime.setMinutes(expirationTime.getMinutes() + 10);
-    await this.prisma.user.update({
-      where: { email },
-      data: {
-        ...user,
-        forgot_password_token: await bcrypt.hash(code, 10),
-        forgot_password_expirationTime: expirationTime,
-      },
-    });
-
-    await this.mailerService.sendMail({
-      to: email,
-      from: 'noreply@nestjs.com',
-      subject: 'Welcome to TGL Nest! ',
-      template: 'forgotPassword',
-      context: { forgot_password_token: code, forgot_password_expirationTime: expirationTime },
-    });
-
-    return Promise.resolve({ message: `Code sended succesfully for ${email}` });
   }
 
   async create(createUserDto: CreateUserDto) {
@@ -88,47 +106,67 @@ export class UserService {
         template: 'createdEmail',
         context: { name: userName },
       });
-      if (createUserDto.isAdmin === false) {
+      if (!createUserDto.isAdmin) {
         return Promise.resolve({ message: 'User created succesfully!' });
       } else {
         return Promise.resolve({ message: 'Admin created succesfully!' });
       }
-    } catch {
-      throw new Error('Failed to create user!');
+    } catch (error) {
+      throw new Error(error.message);
     }
   }
 
   async delete(id: number, user: User) {
-    if (user.id === id) {
-      throw new Error('Cant delete the user you are using!');
-    }
-    await this.prisma.user.delete({
-      where: { id },
-    });
-    await this.prisma.bet.deleteMany({
-      where: { user_id: id },
-    });
+    try {
+      if (user.id === id) {
+        throw new Error('Cannot delete the user you are currently using!');
+      }
 
-    return Promise.resolve({ message: 'Deleted Succesfully!' });
+      await this.prisma.user.delete({
+        where: { id },
+      });
+
+      await this.prisma.bet.deleteMany({
+        where: { user_id: id },
+      });
+
+      return { message: 'Deleted successfully!' };
+    } catch (error) {
+      // handle errors gracefully
+      throw new Error(error.message);
+    }
   }
 
-  async changePassword(id: number, user: UpdateUserDto) {
-    const userPayload = await this.findOne(id);
-    const isPasswordValid = await bcrypt.compare(user.password, userPayload.password);
+  async changePassword(id: number, updateUserDto: UpdateUserDto, user: User) {
+    try {
+      if (user.id !== id) {
+        throw new Error("You cannot change another user's password!");
+      }
 
-    if (!isPasswordValid) {
-      throw new Error('User password and new user password doenst match.');
+      const userPayload = await this.findOne(id);
+      const isPasswordValid = await bcrypt.compare(
+        updateUserDto.password,
+        userPayload.password,
+      );
+
+      if (!isPasswordValid) {
+        throw new Error('User password and new user password do not match!');
+      }
+
+      await this.prisma.user.update({
+        where: { id },
+        data: {
+          password: await bcrypt.hash(updateUserDto.newPassword, 10),
+        },
+      });
+
+      return { message: 'Password changed successfully!' };
+    } catch (error) {
+      throw new Error(error.message);
     }
-    await this.prisma.user.update({
-      where: { id },
-      data: {
-        password: await bcrypt.hash(user.newPassword, 10),
-      },
-    });
-    return Promise.resolve({ message: 'Change password succesfully!' });
   }
 
-  async findAll() {
+  findAll() {
     return this.prisma.user.findMany();
   }
 
