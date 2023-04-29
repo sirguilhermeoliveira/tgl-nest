@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { IsAdmin } from 'src/auth/decorators/is-admin.decorator';
 import { User } from 'src/users/entities/user.entity';
@@ -7,6 +8,7 @@ import { BetsService } from './bets.service';
 import { CreateBetDto } from './dto/create-bet.dto';
 
 @Controller('bets')
+@ApiTags('bets')
 export class BetsController {
   constructor(private readonly betsService: BetsService) {}
 

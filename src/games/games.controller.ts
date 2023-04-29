@@ -1,10 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { IsAdmin } from 'src/auth/decorators/is-admin.decorator';
 
 import { CreateGameDto } from './dto/create-game.dto';
 import { GamesService } from './games.service';
 
 @Controller('games')
+@ApiTags('games')
 export class GamesController {
   constructor(private readonly gamesService: GamesService) {}
 
