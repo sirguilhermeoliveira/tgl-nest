@@ -7,25 +7,43 @@ import { CreateBetDto } from './dto/create-bet.dto';
 export class BetsService {
   constructor(private readonly prisma: PrismaService) {}
   async create(@Body() createBetDto: CreateBetDto, user) {
-    if (user.id !== createBetDto.user_id) {
-      throw new Error('Cant bet on a user that isnt yours.');
-    }
-    const betData = {
-      ...createBetDto,
-      bet_numbers: createBetDto.bet_numbers.toString(),
-    };
+    try {
+      if (user.id !== createBetDto.user_id) {
+        throw new Error('Cant bet on a user that isnt yours.');
+      }
+      const betData = {
+        ...createBetDto,
+        bet_numbers: createBetDto.bet_numbers.toString(),
+      };
 
-    await this.prisma.bet.create({
-      data: betData,
-    });
-    return Promise.resolve({ message: 'Bet created succesfully!' });
+      await this.prisma.bet.create({
+        data: betData,
+      });
+      return Promise.resolve({ message: 'Bet created succesfully!' });
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 
   async findAllBets() {
-    return this.prisma.bet.findMany();
+    const bets = await this.prisma.bet.findMany();
+    return bets.map((bet) => ({
+      ...bet,
+      bet_numbers: bet.bet_numbers.split(',').map(Number),
+    }));
   }
 
   async findAllGameBets(game_id: number, user_id: number) {
+    const gameExists = await this.prisma.game.findUnique({ where: { id: game_id } });
+    if (!gameExists) {
+      throw new Error('Game not found');
+    }
+
+    const userExists = await this.prisma.user.findUnique({ where: { id: user_id } });
+    if (!userExists) {
+      throw new Error('User not found');
+    }
+
     const bets = await this.prisma.bet.findMany({
       where: { AND: [{ game_id: game_id }, { user_id: user_id }] },
     });
@@ -42,13 +60,17 @@ export class BetsService {
   }
 
   async remove(id: number) {
-    const userExistsValidation = await this.findOne(id);
-    if (!userExistsValidation) {
-      throw new Error('User doesnt exist on database.');
+    try {
+      const userExistsValidation = await this.findOne(id);
+      if (!userExistsValidation) {
+        throw new Error('User does not exist in the database.');
+      }
+      await this.prisma.bet.delete({
+        where: { id },
+      });
+      return Promise.resolve({ message: 'Bet deleted successfully!' });
+    } catch (error) {
+      throw new Error(error.message);
     }
-    await this.prisma.bet.delete({
-      where: { id },
-    });
-    return Promise.resolve({ message: 'Bet deleted succesfully!' });
   }
 }
