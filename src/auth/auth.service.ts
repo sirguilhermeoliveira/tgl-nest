@@ -27,14 +27,22 @@ export class AuthService {
     };
   }
   async validateUser(email: string, password: string) {
-    const user = await this.userService.findByEmail(email);
-    if (user) {
+    try {
+      const user = await this.userService.findByEmail(email);
+
+      if (!user) {
+        throw new Error('Email doesnt exist on database.');
+      }
+
       const isPasswordValid = await bcrypt.compare(password, user.password);
 
-      if (isPasswordValid) {
-        return { ...user, password: undefined };
+      if (!isPasswordValid) {
+        throw new Error('Password is incorrect.');
       }
+
+      return { ...user, password: undefined };
+    } catch (error) {
+      throw new Error(error.message);
     }
-    throw new Error('Email address or pasword provided is incorrect.');
   }
 }
