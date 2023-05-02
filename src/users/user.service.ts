@@ -166,8 +166,18 @@ export class UserService {
     }
   }
 
-  findAll() {
-    return this.prisma.user.findMany();
+  findAll(page?: number, pageSize?: number) {
+    if (!page || isNaN(page)) {
+      page = 1;
+    }
+    if (!pageSize || isNaN(pageSize)) {
+      pageSize = 10;
+    }
+    const skip = (page - 1) * pageSize;
+    return this.prisma.user.findMany({
+      skip: skip,
+      take: pageSize,
+    });
   }
 
   findOne(id: number) {

@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { IsAdmin } from 'src/auth/decorators/is-admin.decorator';
@@ -36,8 +36,8 @@ export class UserController {
 
   @IsAdmin()
   @Get('/find-all')
-  findAll() {
-    return this.userService.findAll();
+  findAll(@Query('page') page?: number, @Query('pageSize') pageSize?: number) {
+    return this.userService.findAll(page, pageSize);
   }
 
   @IsAdmin()
