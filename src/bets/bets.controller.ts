@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { IsAdmin } from 'src/auth/decorators/is-admin.decorator';
@@ -15,6 +15,16 @@ export class BetsController {
   @Post()
   create(@Body() createBetDto: CreateBetDto, @CurrentUser() user: User) {
     return this.betsService.create(createBetDto, user);
+  }
+
+  @Get('all-my-bets')
+  findAllMyBets(
+    @CurrentUser() user,
+    @Query('page') page?: number,
+    @Query('pageSize') pageSize?: number,
+    @Query('gameId') gameId?: number,
+  ) {
+    return this.betsService.findAllMyBets(user, page, pageSize, gameId);
   }
 
   @IsAdmin()

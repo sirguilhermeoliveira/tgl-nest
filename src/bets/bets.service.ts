@@ -1,4 +1,5 @@
 import { Body, Injectable } from '@nestjs/common';
+import { User } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 import { CreateBetDto } from './dto/create-bet.dto';
@@ -53,6 +54,29 @@ export class BetsService {
     }));
   }
 
+  async findAllMyBets(user: User, page?: number, pageSize?: number, gameId?: number) {
+    const userExists = await this.prisma.user.findUnique({ where: { id: user.id } });
+    if (!userExists) {
+      throw new Error('User not found');
+    }
+    if (!page || isNaN(page)) {
+      page = 1;
+    }
+    if (!pageSize || isNaN(pageSize)) {
+      pageSize = 10;
+    }
+    const skip = (page - 1) * pageSize;
+    const whereClause = gameId ? { user_id: user.id, game_id: gameId } : { user_id: user.id };
+    const bets = await this.prisma.bet.findMany({
+      where: whereClause,
+      skip: skip,
+      take: pageSize,
+    });
+    return bets.map((bet) => ({
+      ...bet,
+      bet_numbers: bet.bet_numbers.split(',').map(Number),
+    }));
+  }
   async findAllUserBets(userId: number) {
     const userExists = await this.prisma.user.findUnique({ where: { id: userId } });
     if (!userExists) {
