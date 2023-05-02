@@ -18,8 +18,18 @@ export class GamesService {
     }
   }
 
-  findAll() {
-    return this.prisma.game.findMany();
+  findAll(page?: number, pageSize?: number) {
+    if (!page || isNaN(page)) {
+      page = 1;
+    }
+    if (!pageSize || isNaN(pageSize)) {
+      pageSize = 10;
+    }
+    const skip = (page - 1) * pageSize;
+    return this.prisma.game.findMany({
+      skip: skip,
+      take: pageSize,
+    });
   }
   async remove(id: number) {
     try {

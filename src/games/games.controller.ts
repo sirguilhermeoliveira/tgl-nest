@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { IsAdmin } from 'src/auth/decorators/is-admin.decorator';
 
@@ -18,8 +18,8 @@ export class GamesController {
 
   @IsAdmin()
   @Get()
-  findAll() {
-    return this.gamesService.findAll();
+  findAll(@Query('page') page?: number, @Query('pageSize') pageSize?: number) {
+    return this.gamesService.findAll(page, pageSize);
   }
 
   @IsAdmin()
