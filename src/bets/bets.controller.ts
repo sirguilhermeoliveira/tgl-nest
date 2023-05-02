@@ -6,6 +6,7 @@ import { User } from 'src/users/entities/user.entity';
 
 import { BetsService } from './bets.service';
 import { CreateBetDto } from './dto/create-bet.dto';
+import { FilterGameParams } from './dto/filter-game.dto';
 
 @Controller('bets')
 @ApiTags('bets')
@@ -18,13 +19,8 @@ export class BetsController {
   }
 
   @Get('all-my-bets')
-  findAllMyBets(
-    @CurrentUser() user,
-    @Query('page') page?: number,
-    @Query('pageSize') pageSize?: number,
-    @Query('gameId') gameId?: number,
-  ) {
-    return this.betsService.findAllMyBets(user, page, pageSize, gameId);
+  findAllMyBets(@CurrentUser() user, @Query() params: FilterGameParams) {
+    return this.betsService.findAllMyBets(user, params.gameId, params.page, params.pageSize);
   }
 
   @IsAdmin()

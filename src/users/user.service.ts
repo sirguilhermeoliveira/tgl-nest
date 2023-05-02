@@ -166,13 +166,7 @@ export class UserService {
     }
   }
 
-  findAll(page?: number, pageSize?: number) {
-    if (!page || isNaN(page)) {
-      page = 1;
-    }
-    if (!pageSize || isNaN(pageSize)) {
-      pageSize = 10;
-    }
+  findAll(page = 1, pageSize = 10) {
     const skip = (page - 1) * pageSize;
     return this.prisma.user.findMany({
       skip: skip,

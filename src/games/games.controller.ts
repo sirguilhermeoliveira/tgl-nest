@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { IsAdmin } from 'src/auth/decorators/is-admin.decorator';
+import { PaginationParams } from 'src/shared/dto/pagination-params.dto';
 
 import { CreateGameDto } from './dto/create-game.dto';
 import { GamesService } from './games.service';
@@ -18,8 +19,8 @@ export class GamesController {
 
   @IsAdmin()
   @Get()
-  findAll(@Query('page') page?: number, @Query('pageSize') pageSize?: number) {
-    return this.gamesService.findAll(page, pageSize);
+  findAll(@Query() params: PaginationParams) {
+    return this.gamesService.findAll(params.page, params.pageSize);
   }
 
   @IsAdmin()

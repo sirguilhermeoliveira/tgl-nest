@@ -54,16 +54,10 @@ export class BetsService {
     }));
   }
 
-  async findAllMyBets(user: User, page?: number, pageSize?: number, gameId?: number) {
+  async findAllMyBets(user: User, gameId?: number, page = 1, pageSize = 10) {
     const userExists = await this.prisma.user.findUnique({ where: { id: user.id } });
     if (!userExists) {
       throw new Error('User not found');
-    }
-    if (!page || isNaN(page)) {
-      page = 1;
-    }
-    if (!pageSize || isNaN(pageSize)) {
-      pageSize = 10;
     }
     const skip = (page - 1) * pageSize;
     const whereClause = gameId ? { user_id: user.id, game_id: gameId } : { user_id: user.id };

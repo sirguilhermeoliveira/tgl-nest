@@ -3,6 +3,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { IsAdmin } from 'src/auth/decorators/is-admin.decorator';
 import { IsPublic } from 'src/auth/decorators/is-public.decorator';
+import { PaginationParams } from 'src/shared/dto/pagination-params.dto';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -36,8 +37,8 @@ export class UserController {
 
   @IsAdmin()
   @Get('/find-all')
-  findAll(@Query('page') page?: number, @Query('pageSize') pageSize?: number) {
-    return this.userService.findAll(page, pageSize);
+  findAll(@Query() params: PaginationParams) {
+    return this.userService.findAll(params.page, params.pageSize);
   }
 
   @IsAdmin()
