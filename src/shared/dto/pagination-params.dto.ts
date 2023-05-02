@@ -4,6 +4,10 @@ import { IsOptional } from 'class-validator';
 export class PaginationParams {
   @IsOptional()
   @Transform(({ value }) => parseInt(value))
+  gameId: number;
+
+  @IsOptional()
+  @Transform(({ value }) => parseInt(value))
   page: number;
 
   @IsOptional()

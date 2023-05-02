@@ -2,11 +2,11 @@ import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/commo
 import { ApiTags } from '@nestjs/swagger';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { IsAdmin } from 'src/auth/decorators/is-admin.decorator';
+import { PaginationParams } from 'src/shared/dto/pagination-params.dto';
 import { User } from 'src/users/entities/user.entity';
 
 import { BetsService } from './bets.service';
 import { CreateBetDto } from './dto/create-bet.dto';
-import { FilterGameParams } from './dto/filter-game.dto';
 
 @Controller('bets')
 @ApiTags('bets')
@@ -19,7 +19,7 @@ export class BetsController {
   }
 
   @Get('all-my-bets')
-  findAllMyBets(@CurrentUser() user, @Query() params: FilterGameParams) {
+  findAllMyBets(@CurrentUser() user, @Query() params: PaginationParams) {
     return this.betsService.findAllMyBets(user, params.gameId, params.page, params.pageSize);
   }
 
