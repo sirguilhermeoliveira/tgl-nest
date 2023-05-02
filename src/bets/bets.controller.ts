@@ -30,6 +30,12 @@ export class BetsController {
   }
 
   @IsAdmin()
+  @Get(':user_id')
+  findAllUserBets(@Param('user_id') user_id: string) {
+    return this.betsService.findAllUserBets(+user_id);
+  }
+
+  @IsAdmin()
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.betsService.remove(+id);
