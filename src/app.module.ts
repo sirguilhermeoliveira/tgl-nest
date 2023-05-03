@@ -6,13 +6,13 @@ import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AuthModule } from './auth/auth.module';
-import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
-import { BetsModule } from './bets/bets.module';
-import { GamesModule } from './games/games.module';
-import { PrismaModule } from './prisma/prisma.module';
-import { TasksModule } from './tasks/tasks.module';
-import { UserModule } from './users/user.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { JwtAuthGuard } from './modules/auth/guards/jwt-auth.guard';
+import { BetsModule } from './modules/bets/bets.module';
+import { GamesModule } from './modules/games/games.module';
+import { PrismaModule } from './modules/prisma/prisma.module';
+import { TasksModule } from './modules/tasks/tasks.module';
+import { UserModule } from './modules/users/user.module';
 
 @Module({
   imports: [

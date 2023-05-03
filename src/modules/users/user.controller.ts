@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
-import { IsAdmin } from 'src/auth/decorators/is-admin.decorator';
-import { IsPublic } from 'src/auth/decorators/is-public.decorator';
+import { CurrentUser } from 'src/modules/auth/decorators/current-user.decorator';
+import { IsAdmin } from 'src/modules/auth/decorators/is-admin.decorator';
+import { IsPublic } from 'src/modules/auth/decorators/is-public.decorator';
 import { PaginationParams } from 'src/shared/dto/pagination-params.dto';
 
 import { CreateUserDto } from './dto/create-user.dto';

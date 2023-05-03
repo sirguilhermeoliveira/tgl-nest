@@ -1,6 +1,6 @@
 import { Body, Injectable } from '@nestjs/common';
 import { User } from '@prisma/client';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/modules/prisma/prisma.service';
 
 import { CreateBetDto } from './dto/create-bet.dto';
 

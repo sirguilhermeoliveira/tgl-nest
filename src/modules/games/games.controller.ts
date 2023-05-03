@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { IsAdmin } from 'src/auth/decorators/is-admin.decorator';
+import { IsAdmin } from 'src/modules/auth/decorators/is-admin.decorator';
 import { PaginationParams } from 'src/shared/dto/pagination-params.dto';
 
 import { CreateGameDto } from './dto/create-game.dto';
