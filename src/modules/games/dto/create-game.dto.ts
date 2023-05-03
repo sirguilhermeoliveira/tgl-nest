@@ -1,9 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNumber, IsString } from 'class-validator';
 
-import { Game } from '../entities/game.entity';
-
-export class CreateGameDto extends Game {
+export class CreateGameDto {
   @ApiProperty({
     example: 'Mega Sena',
     description: `Game title.`,

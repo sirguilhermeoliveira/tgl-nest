@@ -1,9 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, Matches, MaxLength, MinLength } from 'class-validator';
 
-import { User } from '../entities/user.entity';
-
-export class UpdateUserDto extends User {
+export class UpdateUserDto {
   @ApiProperty({
     example: '123@Abc',
     description: `Has to have a uppercase and a lower case letter, min length 4, max length 20 and a number. Has to be a string.`,
