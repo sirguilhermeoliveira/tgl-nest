@@ -9,6 +9,6 @@ export class TasksController {
 
   @Cron('0 0 9 * * *')
   handleDailyTask() {
-    return this.tasksService.handleDailyTask();
+    this.tasksService.handleDailyTask();
   }
 }

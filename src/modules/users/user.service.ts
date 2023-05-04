@@ -2,8 +2,8 @@ import { Body, Injectable } from '@nestjs/common';
 import { MailerService } from '@nestjs-modules/mailer';
 import * as bcrypt from 'bcrypt';
 import { randomBytes } from 'crypto';
-import { PrismaService } from 'src/modules/prisma/prisma.service';
 
+import { PrismaService } from '../../modules/prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';

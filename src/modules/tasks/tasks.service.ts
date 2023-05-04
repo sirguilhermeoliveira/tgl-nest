@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { MailerService } from '@nestjs-modules/mailer';
-import { PrismaService } from 'src/modules/prisma/prisma.service';
+
+import { PrismaService } from '../../modules/prisma/prisma.service';
 
 @Injectable()
 export class TasksService {
