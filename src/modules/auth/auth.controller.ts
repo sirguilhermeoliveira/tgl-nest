@@ -4,7 +4,7 @@ import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { IsPublic } from './decorators/is-public.decorator';
 import { LocalAuthGuard } from './guards/local-auth.guard';
-import { AuthRequest } from './models/AuthRequest';
+import { LoginRequestBody } from './models/LoginRequestBody';
 
 @Controller()
 @ApiTags('auth')
@@ -16,7 +16,7 @@ export class AuthController {
   @Post('login')
   @HttpCode(HttpStatus.OK)
   @UseGuards(LocalAuthGuard)
-  login(@Request() req: AuthRequest) {
-    return this.authService.login(req.user);
+  login(@Request() auth: LoginRequestBody) {
+    return this.authService.login(auth);
   }
 }

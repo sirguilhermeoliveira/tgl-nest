@@ -19,8 +19,8 @@ export class GamesController {
 
   @IsAdmin()
   @Get()
-  findAll(@Query() params: PaginationParams) {
-    return this.gamesService.findAll(params.page, params.pageSize);
+  findAll(@Query() params?: PaginationParams) {
+    return this.gamesService.findAll(params?.page, params?.pageSize);
   }
 
   @IsAdmin()

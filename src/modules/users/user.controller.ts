@@ -37,8 +37,8 @@ export class UserController {
 
   @IsAdmin()
   @Get('/find-all')
-  findAll(@Query() params: PaginationParams) {
-    return this.userService.findAll(params.page, params.pageSize);
+  findAll(@Query() params?: PaginationParams) {
+    return this.userService.findAll(params?.page, params?.pageSize);
   }
 
   @IsAdmin()

@@ -19,8 +19,13 @@ export class BetsController {
   }
 
   @Get('all-my-bets')
-  findAllMyBets(@CurrentUser() user, @Query() params: PaginationParams) {
-    return this.betsService.findAllMyBets(user, params.gameId, params.page, params.pageSize);
+  findAllMyBets(@CurrentUser() user, @Query() params?: PaginationParams) {
+    return this.betsService.findAllMyBets(
+      user,
+      params?.gameId,
+      params?.page,
+      params?.pageSize,
+    );
   }
 
   @IsAdmin()
