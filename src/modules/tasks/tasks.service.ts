@@ -28,6 +28,8 @@ export class TasksService {
               name: user.name,
             },
           });
+        } else {
+          return Promise.resolve({ message: 'No users with bets older than one week!' });
         }
       });
     });
