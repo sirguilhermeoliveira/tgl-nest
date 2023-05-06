@@ -37,26 +37,18 @@ describe('AuthService', () => {
 
   describe('login', () => {
     it('should return a user token', () => {
-      const user = {
-        id: 1,
-        email: 'test@test.com',
-        name: 'test',
-        password: 'password',
-      };
       const loginRequestBody = {
-        email: user.email,
-        password: user.password,
+        email: 'test@test.com',
+        password: 'password',
       };
       const expectedToken = {
         access_token: 'mockToken',
       };
       const jwtSignSpy = jest.spyOn(jwtService, 'sign');
-
       expect(authService.login(loginRequestBody)).toEqual(expectedToken);
       expect(jwtSignSpy).toHaveBeenCalledWith({
-        sub: user.id,
-        email: user.email,
-        name: user.name,
+        email: loginRequestBody.email,
+        password: loginRequestBody.password,
       });
     });
   });
