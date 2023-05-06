@@ -44,7 +44,7 @@ export class UserController {
   @IsAdmin()
   @Delete('/delete/:id')
   delete(@Param('id') id: string, @CurrentUser() user: User) {
-    return this.userService.delete(+id, user);
+    return this.userService.delete(id, user);
   }
 
   @Patch('/change-password/:id')
@@ -53,6 +53,6 @@ export class UserController {
     @Body() updateUserDto: UpdateUserDto,
     @CurrentUser() user: User,
   ) {
-    return this.userService.changePassword(+id, updateUserDto, user);
+    return this.userService.changePassword(id, updateUserDto, user);
   }
 }

@@ -1,7 +1,7 @@
-import { IsEmail, IsOptional, IsString } from 'class-validator';
+import { IsEmail, IsOptional, IsString, IsUUID } from 'class-validator';
 
 export class LoginRequestBody {
-  @IsString()
+  @IsUUID()
   @IsOptional()
   id?: string;
 

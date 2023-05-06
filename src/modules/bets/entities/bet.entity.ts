@@ -1,5 +1,5 @@
 export class Bet {
-  id?: number;
+  id?: string;
   user_id?: number;
   game_id?: number;
   bet_numbers: string;

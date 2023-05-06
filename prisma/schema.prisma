@@ -11,7 +11,7 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
   isAdmin   Boolean? @default(false)
   forgot_password_token String?
   forgot_password_expirationTime DateTime?
@@ -25,7 +25,7 @@ model User {
 }
 
 model Game {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
   title String
   description String
   color String
@@ -37,10 +37,10 @@ model Game {
 }
 
 model Bet {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
 
-  user_id Int
-  game_id Int
+  user_id String
+  game_id String
 
   bet_numbers String
   created_At DateTime @default(now())

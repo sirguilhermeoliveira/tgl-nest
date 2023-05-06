@@ -37,18 +37,18 @@ export class BetsController {
   @IsAdmin()
   @Get(':game_id/:user_id')
   findAllGameBets(@Param('game_id') game_id: string, @Param('user_id') user_id: string) {
-    return this.betsService.findAllGameBets(+game_id, +user_id);
+    return this.betsService.findAllGameBets(game_id, user_id);
   }
 
   @IsAdmin()
   @Get(':user_id')
   findAllUserBets(@Param('user_id') user_id: string) {
-    return this.betsService.findAllUserBets(+user_id);
+    return this.betsService.findAllUserBets(user_id);
   }
 
   @IsAdmin()
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.betsService.remove(+id);
+    return this.betsService.remove(id);
   }
 }

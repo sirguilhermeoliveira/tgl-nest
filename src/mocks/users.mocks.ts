@@ -1,5 +1,5 @@
 export const adminMock_1 = {
-  id: 1,
+  id: '1',
   email: 'user1@example.com',
   name: 'User 1',
   isAdmin: true,
@@ -11,7 +11,7 @@ export const adminMock_1 = {
 };
 
 export const userMock_1 = {
-  id: 1,
+  id: '2',
   email: 'user1@example.com',
   name: 'User 1',
   isAdmin: false,
@@ -23,7 +23,7 @@ export const userMock_1 = {
 };
 
 export const userMock_2 = {
-  id: 2,
+  id: '3',
   email: 'user2@example.com',
   name: 'User 2',
   isAdmin: false,
@@ -36,7 +36,7 @@ export const userMock_2 = {
 
 export const usersMock = [
   {
-    id: 1,
+    id: '1',
     name: 'User 1',
     email: 'user1@example.com',
     password: 'password',
@@ -47,7 +47,7 @@ export const usersMock = [
     updated_At: new Date(),
   },
   {
-    id: 2,
+    id: '2',
     name: 'User 2',
     email: 'user2@example.com',
     password: 'password',

@@ -116,7 +116,7 @@ export class UserService {
     }
   }
 
-  async delete(id: number, user: User) {
+  async delete(id: string, user: User) {
     try {
       if (user.id === id) {
         throw new Error('Cannot delete the user you are currently using!');
@@ -137,7 +137,7 @@ export class UserService {
     }
   }
 
-  async changePassword(id: number, updateUserDto: UpdateUserDto, user: User) {
+  async changePassword(id: string, updateUserDto: UpdateUserDto, user: User) {
     try {
       if (user.id !== id) {
         throw new Error("You cannot change another user's password!");
@@ -174,7 +174,7 @@ export class UserService {
     });
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.prisma.user.findUnique({
       where: { id },
     });

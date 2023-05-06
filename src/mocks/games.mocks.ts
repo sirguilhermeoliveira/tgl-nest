@@ -1,5 +1,5 @@
 export const gameMock_1 = {
-  id: 1,
+  id: '1',
   title: 'Test Title',
   description: 'Test Description',
   color: 'Test Color',
@@ -9,7 +9,7 @@ export const gameMock_1 = {
 };
 
 export const gameMock_2 = {
-  id: 2,
+  id: '2',
   title: 'Test Title',
   description: 'Test Description',
   color: 'Test Color',

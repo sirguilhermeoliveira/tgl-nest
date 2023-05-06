@@ -14,12 +14,12 @@ export class CreateBetDto {
     description: `Own user id.`,
   })
   @IsNumber()
-  user_id: number;
+  user_id: string;
 
   @ApiProperty({
     example: '1',
     description: `Choose game id.`,
   })
   @IsNumber()
-  game_id: number;
+  game_id: string;
 }

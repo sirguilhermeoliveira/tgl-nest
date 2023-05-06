@@ -21,6 +21,12 @@ describe('TasksService', () => {
             sendMail: jest.fn().mockResolvedValue(null),
           },
         },
+        {
+          provide: TasksService,
+          useValue: {
+            handleDailyTask: jest.fn().mockResolvedValue({ message: 'Emails sent!' }),
+          },
+        },
       ],
     }).compile();
 

@@ -33,5 +33,6 @@ export class TasksService {
         }
       });
     });
+    return Promise.resolve({ message: 'Emails sent!' });
   }
 }

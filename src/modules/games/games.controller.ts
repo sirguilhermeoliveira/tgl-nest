@@ -26,6 +26,6 @@ export class GamesController {
   @IsAdmin()
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.gamesService.remove(+id);
+    return this.gamesService.remove(id);
   }
 }

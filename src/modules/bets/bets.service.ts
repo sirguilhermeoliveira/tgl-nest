@@ -34,7 +34,7 @@ export class BetsService {
     }));
   }
 
-  async findAllGameBets(gameId: number, userId: number) {
+  async findAllGameBets(gameId: string, userId: string) {
     const gameExists = await this.prisma.game.findUnique({ where: { id: gameId } });
     if (!gameExists) {
       throw new Error('Game not found');
@@ -54,7 +54,7 @@ export class BetsService {
     }));
   }
 
-  async findAllMyBets(user: User, gameId?: number, page = 1, pageSize = 10) {
+  async findAllMyBets(user: User, gameId?: string, page = 1, pageSize = 10) {
     const userExists = await this.prisma.user.findUnique({ where: { id: user.id } });
     if (!userExists) {
       throw new Error('User not found');
@@ -71,7 +71,7 @@ export class BetsService {
       bet_numbers: bet.bet_numbers.split(',').map(Number),
     }));
   }
-  async findAllUserBets(userId: number) {
+  async findAllUserBets(userId: string) {
     const userExists = await this.prisma.user.findUnique({ where: { id: userId } });
     if (!userExists) {
       throw new Error('User not found');
@@ -86,13 +86,13 @@ export class BetsService {
     }));
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.prisma.bet.findUnique({
       where: { id },
     });
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     try {
       const userExistsValidation = await this.findOne(id);
       if (!userExistsValidation) {

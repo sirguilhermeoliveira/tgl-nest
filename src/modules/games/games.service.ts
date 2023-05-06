@@ -25,7 +25,7 @@ export class GamesService {
       take: pageSize,
     });
   }
-  async remove(id: number) {
+  async remove(id: string) {
     try {
       await this.prisma.game.delete({
         where: { id },
