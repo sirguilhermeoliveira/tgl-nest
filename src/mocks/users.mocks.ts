@@ -1,3 +1,15 @@
+export const adminMock_1 = {
+  id: 1,
+  email: 'user1@example.com',
+  name: 'User 1',
+  isAdmin: true,
+  forgot_password_token: '',
+  forgot_password_expirationTime: new Date(),
+  password: 'Abc123',
+  created_At: new Date(),
+  updated_At: new Date(),
+};
+
 export const userMock_1 = {
   id: 1,
   email: 'user1@example.com',
