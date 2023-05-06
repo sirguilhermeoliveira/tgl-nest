@@ -1,5 +1,6 @@
 import { Body, Injectable } from '@nestjs/common';
 import { User } from '@prisma/client';
+import { nanoid } from 'nanoid';
 
 import { PrismaService } from '../../modules/prisma/prisma.service';
 import { CreateBetDto } from './dto/create-bet.dto';
@@ -14,7 +15,7 @@ export class BetsService {
       }
       const betData = {
         ...createBetDto,
-        id: crypto.randomUUID(),
+        id: nanoid(),
         bet_numbers: createBetDto.bet_numbers.toString(),
       };
 

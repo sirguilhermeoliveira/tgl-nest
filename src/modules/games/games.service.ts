@@ -1,4 +1,5 @@
 import { Body, Injectable } from '@nestjs/common';
+import { nanoid } from 'nanoid';
 
 import { PrismaService } from '../../modules/prisma/prisma.service';
 import { CreateGameDto } from './dto/create-game.dto';
@@ -9,7 +10,7 @@ export class GamesService {
   async create(@Body() createGameDto: CreateGameDto) {
     try {
       await this.prisma.game.create({
-        data: {...createGameDto, id: crypto.randomUUID()},
+        data: { ...createGameDto, id: nanoid() },
       });
 
       return { message: 'Game created successfully!' };

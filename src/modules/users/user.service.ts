@@ -2,6 +2,7 @@ import { Body, Injectable } from '@nestjs/common';
 import { MailerService } from '@nestjs-modules/mailer';
 import * as bcrypt from 'bcrypt';
 import { randomBytes } from 'crypto';
+import { nanoid } from 'nanoid';
 
 import { PrismaService } from '../../modules/prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -91,7 +92,7 @@ export class UserService {
     try {
       const data = {
         ...createUserDto,
-        id: crypto.randomUUID(),
+        id: nanoid(),
         password: await bcrypt.hash(createUserDto.password, 10),
       };
       await this.prisma.user.create({
