@@ -35,6 +35,9 @@ describe('AuthService', () => {
     jwtService = module.get<JwtService>(JwtService);
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
   describe('login', () => {
     it('should return a user token', () => {
       const loginRequestBody = {
