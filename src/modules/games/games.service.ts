@@ -9,7 +9,7 @@ export class GamesService {
   async create(@Body() createGameDto: CreateGameDto) {
     try {
       await this.prisma.game.create({
-        data: createGameDto,
+        data: {...createGameDto, id: crypto.randomUUID()},
       });
 
       return { message: 'Game created successfully!' };

@@ -91,6 +91,7 @@ export class UserService {
     try {
       const data = {
         ...createUserDto,
+        id: crypto.randomUUID(),
         password: await bcrypt.hash(createUserDto.password, 10),
       };
       await this.prisma.user.create({

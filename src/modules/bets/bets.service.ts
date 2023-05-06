@@ -14,6 +14,7 @@ export class BetsService {
       }
       const betData = {
         ...createBetDto,
+        id: crypto.randomUUID(),
         bet_numbers: createBetDto.bet_numbers.toString(),
       };
 
