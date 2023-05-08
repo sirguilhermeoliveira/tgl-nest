@@ -1,3 +1,5 @@
+export const user_EmailMock_1 = 'test_email@gmail.com';
+
 export const adminMock_1 = {
   id: '1',
   email: 'user1@example.com',
@@ -58,3 +60,20 @@ export const usersMock = [
     updated_At: new Date(),
   },
 ];
+
+export const changeUserPasswordMock = {
+  password: 'password',
+  newPassword: 'Abc123',
+};
+
+export const changeUserMock = {
+  id: '1',
+  name: 'User 1',
+  email: 'user1@example.com',
+  password: 'password',
+  isAdmin: false,
+  forgot_password_token: '',
+  forgot_password_expirationTime: new Date(),
+  created_At: new Date(),
+  updated_At: new Date(),
+};
