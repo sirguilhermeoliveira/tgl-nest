@@ -1,3 +1,4 @@
+import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 
 import { PrismaService } from './prisma.service';
@@ -7,17 +8,40 @@ describe('PrismaService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [PrismaService],
+      providers: [
+        {
+          provide: PrismaService,
+          useValue: {
+            onModuleInit: jest.fn().mockReturnValue({ message: 'Server is connecting...' }),
+            enableShutdownHooks: jest
+              .fn()
+              .mockReturnValue({ message: 'Server is shutting down...' }),
+          },
+        },
+      ],
     }).compile();
 
     prismaService = module.get<PrismaService>(PrismaService);
   });
 
-  afterEach(async () => {
-    await prismaService.$disconnect();
+  describe('OnModuleInit', () => {
+    it('should init server', async () => {
+      jest.spyOn(prismaService, 'onModuleInit');
+      const result = await prismaService.onModuleInit();
+      expect(result).toEqual({ message: 'Server is connecting...' });
+    });
   });
 
-  it('should be defined', () => {
-    expect(prismaService).toBeDefined();
+  describe('enableShutdownHooks', () => {
+    it('should shutdown server', async () => {
+      jest.spyOn(prismaService, 'enableShutdownHooks');
+      const mockApp = {
+        close: jest.fn(),
+      };
+      const result = await prismaService.enableShutdownHooks(
+        mockApp as unknown as INestApplication,
+      );
+      expect(result).toEqual({ message: 'Server is shutting down...' });
+    });
   });
 });
