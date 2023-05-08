@@ -13,8 +13,8 @@ export const adminMock_1 = {
 };
 
 export const userMock_1 = {
-  id: '2',
-  email: 'user1@example.com',
+  id: '3',
+  email: 'user_test@example.com',
   name: 'User 1',
   isAdmin: false,
   forgot_password_token: '',
