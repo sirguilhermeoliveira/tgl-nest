@@ -1,10 +1,12 @@
 export const betMock_1 = {
+  id: '1',
   user_id: '1',
   game_id: '1',
   bet_numbers: [1, 2, 3, 4, 5],
 };
 
 export const betMock_2 = {
+  id: '2',
   user_id: '1',
   game_id: '1',
   bet_numbers: [1, 2, 3, 4, 5],
