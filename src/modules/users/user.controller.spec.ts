@@ -5,7 +5,7 @@ import { UserController } from './user.controller';
 import { UserService } from './user.service';
 
 describe('UserController', () => {
-  let controller: UserController;
+  let userController: UserController;
   let userService: UserService;
 
   beforeEach(async () => {
@@ -25,14 +25,14 @@ describe('UserController', () => {
       ],
     }).compile();
 
-    controller = module.get<UserController>(UserController);
+    userController = module.get<UserController>(UserController);
     userService = module.get<UserService>(UserService);
   });
 
   describe('Forgot Password', () => {
     it('should call userService.sendCode once', () => {
       const forgotPassword = jest.spyOn(userService, 'sendCode');
-      controller.sendCode({ email: 'teste@gmail.com' });
+      userController.sendCode({ email: 'teste@gmail.com' });
       expect(forgotPassword).toHaveBeenCalledTimes(1);
     });
   });
@@ -40,7 +40,7 @@ describe('UserController', () => {
   describe('Reset Password', () => {
     it('should call userService.resetPassword once', () => {
       const resetPassword = jest.spyOn(userService, 'resetPassword');
-      controller.resetPassword({
+      userController.resetPassword({
         email: 'teste@gmail.com',
         code: 'XXXXXX',
         newPassword: 'XXXXXX',
@@ -52,7 +52,7 @@ describe('UserController', () => {
   describe('Create', () => {
     it('should call userService.create once', () => {
       const create = jest.spyOn(userService, 'create');
-      controller.create(userMock_1);
+      userController.create(userMock_1);
       expect(create).toHaveBeenCalledTimes(1);
     });
   });
@@ -60,7 +60,7 @@ describe('UserController', () => {
   describe('Find All', () => {
     it('should call userService.findAll once', () => {
       const findAll = jest.spyOn(userService, 'findAll');
-      controller.findAll();
+      userController.findAll();
       expect(findAll).toHaveBeenCalledTimes(1);
     });
   });
@@ -68,7 +68,7 @@ describe('UserController', () => {
   describe('Delete', () => {
     it('should call userService.delete once', () => {
       const deleteUser = jest.spyOn(userService, 'delete');
-      controller.delete('1', userMock_1);
+      userController.delete('1', userMock_1);
       expect(deleteUser).toHaveBeenCalledTimes(1);
     });
   });
