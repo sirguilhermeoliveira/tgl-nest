@@ -16,6 +16,8 @@ describe('GamesService', () => {
           provide: GamesService,
           useValue: {
             create: jest.fn().mockResolvedValue({ message: 'Game created successfully!' }),
+            remove: jest.fn().mockResolvedValue({ message: 'Game deleted successfully!' }),
+            findAll: jest.fn().mockResolvedValue(gameMock_1),
           },
         },
         {
@@ -35,6 +37,24 @@ describe('GamesService', () => {
       jest.spyOn(gamesService, 'create');
       const result = await gamesService.create(gameMock_1);
       expect(result).toEqual({ message: 'Game created successfully!' });
+    });
+  });
+
+  describe('FindAll', () => {
+    it('should find all games', async () => {
+      jest.spyOn(gamesService, 'create');
+      await gamesService.create(gameMock_1);
+      jest.spyOn(gamesService, 'findAll');
+      const result = await gamesService.findAll();
+      expect(result).toEqual(gameMock_1);
+    });
+  });
+
+  describe('Remove', () => {
+    it('should remove a game', async () => {
+      jest.spyOn(gamesService, 'remove');
+      const result = await gamesService.remove('1');
+      expect(result).toEqual({ message: 'Game deleted successfully!' });
     });
   });
 });
