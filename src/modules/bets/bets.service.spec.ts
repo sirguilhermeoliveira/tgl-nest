@@ -37,6 +37,10 @@ describe('BetsService', () => {
     betsService = module.get<BetsService>(BetsService);
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   describe('Create', () => {
     it('should create a bet', async () => {
       jest.spyOn(betsService, 'create');

@@ -49,6 +49,10 @@ describe('UsersService', () => {
     userService = module.get<UserService>(UserService);
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   describe('ResetPassword', () => {
     it('should reset user password after send code to email', async () => {
       jest.spyOn(userService, 'resetPassword');

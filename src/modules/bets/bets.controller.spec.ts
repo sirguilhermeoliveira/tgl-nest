@@ -31,6 +31,10 @@ describe('BetsController', () => {
     betsService = module.get<BetsService>(BetsService);
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   describe('Create', () => {
     it('should call betsService.create once', () => {
       const createBet = jest.spyOn(betsService, 'create');

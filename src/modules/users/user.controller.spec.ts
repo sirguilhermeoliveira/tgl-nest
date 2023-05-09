@@ -29,6 +29,10 @@ describe('UserController', () => {
     userService = module.get<UserService>(UserService);
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   describe('Forgot Password', () => {
     it('should call userService.sendCode once', () => {
       const forgotPassword = jest.spyOn(userService, 'sendCode');

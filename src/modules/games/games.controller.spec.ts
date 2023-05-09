@@ -27,6 +27,10 @@ describe('GamesController', () => {
     gamesService = module.get<GamesService>(GamesService);
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   describe('Create', () => {
     it('should call gamesService.create once', () => {
       const createGame = jest.spyOn(gamesService, 'create');

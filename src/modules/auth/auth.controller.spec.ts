@@ -25,6 +25,10 @@ describe('AuthController', () => {
     authService = module.get<AuthService>(AuthService);
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   describe('Login', () => {
     it('should call authService.login once', () => {
       const authLogin = jest.spyOn(authService, 'login');

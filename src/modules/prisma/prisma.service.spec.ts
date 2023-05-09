@@ -24,6 +24,10 @@ describe('PrismaService', () => {
     prismaService = module.get<PrismaService>(PrismaService);
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   describe('OnModuleInit', () => {
     it('should init server', async () => {
       jest.spyOn(prismaService, 'onModuleInit');
