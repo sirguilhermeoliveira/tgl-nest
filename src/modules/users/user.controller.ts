@@ -6,6 +6,7 @@ import { IsAdmin } from '../../modules/auth/decorators/is-admin.decorator';
 import { IsPublic } from '../../modules/auth/decorators/is-public.decorator';
 import { PaginationParams } from '../../shared/dto/pagination-params.dto';
 import { CreateUserDto } from './dto/create-user.dto';
+import { ResetPasswordUserDto } from './dto/reset-password-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { UserService } from './user.service';
@@ -23,10 +24,8 @@ export class UserController {
 
   @IsPublic()
   @Post('/reset-password')
-  async resetPassword(
-    @Body() { email, code, newPassword }: { email: string; code: string; newPassword: string },
-  ) {
-    return this.userService.resetPassword(email, code, newPassword);
+  async resetPassword(@Body() { email, code, newPassword }: ResetPasswordUserDto) {
+    return this.userService.resetPassword({ email, code, newPassword });
   }
 
   @IsPublic()

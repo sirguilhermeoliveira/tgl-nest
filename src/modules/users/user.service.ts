@@ -6,6 +6,7 @@ import { nanoid } from 'nanoid';
 
 import { PrismaService } from '../../modules/prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { ResetPasswordUserDto } from './dto/reset-password-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 
@@ -16,7 +17,7 @@ export class UserService {
     private readonly mailerService: MailerService,
   ) {}
 
-  async resetPassword(@Body() email: string, code: string, newPassword: string) {
+  async resetPassword(@Body() { email, code, newPassword }: ResetPasswordUserDto) {
     try {
       const user = await this.findByEmail(email);
 

@@ -56,7 +56,11 @@ describe('UsersService', () => {
   describe('ResetPassword', () => {
     it('should reset user password after send code to email', async () => {
       jest.spyOn(userService, 'resetPassword');
-      const result = await userService.resetPassword('test@gmail.com', '123456', '123Cba');
+      const result = await userService.resetPassword({
+        email: 'test@gmail.com',
+        code: '123456',
+        newPassword: '123Cba',
+      });
       expect(result).toEqual({ message: 'Password reset successfully!' });
     });
   });
