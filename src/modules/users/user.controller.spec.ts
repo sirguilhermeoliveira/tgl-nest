@@ -36,7 +36,7 @@ describe('UserController', () => {
   describe('Forgot Password', () => {
     it('should call userService.sendCode once', () => {
       const forgotPassword = jest.spyOn(userService, 'sendCode');
-      userController.sendCode({ email: 'teste@gmail.com' });
+      userController.sendCode({ email: '' });
       expect(forgotPassword).toHaveBeenCalledTimes(1);
     });
   });

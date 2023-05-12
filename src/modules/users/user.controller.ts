@@ -8,6 +8,7 @@ import { PaginationParams } from '../../shared/dto/pagination-params.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ResetPasswordUserDto } from './dto/reset-password-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UserEmailDto } from './dto/user-email.dto';
 import { User } from './entities/user.entity';
 import { UserService } from './user.service';
 
@@ -18,7 +19,7 @@ export class UserController {
 
   @IsPublic()
   @Post('/forgot-password')
-  sendCode(@Body() email: { email: string }) {
+  sendCode(@Body() email: UserEmailDto) {
     return this.userService.sendCode(email);
   }
 
