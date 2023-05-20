@@ -1,6 +1,4 @@
-import { generateFakeEmail } from './utils/index';
-
 export const authMock_1 = {
-  email: generateFakeEmail(),
+  email: 'adhilson13@gmail.com',
   password: 'Abc123',
 };
