@@ -1,4 +1,4 @@
 export const authMock_1 = {
-  email: 'adhilson13@gmail.com',
+  email: 'test_user@gmail.com',
   password: 'Abc123',
 };

@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber } from 'class-validator';
+import { IsNumber, IsString } from 'class-validator';
 
 export class CreateBetDto {
   @ApiProperty({
@@ -13,13 +13,13 @@ export class CreateBetDto {
     example: '1',
     description: `Own user id.`,
   })
-  @IsNumber()
+  @IsString()
   user_id: string;
 
   @ApiProperty({
     example: '1',
     description: `Choose game id.`,
   })
-  @IsNumber()
+  @IsString()
   game_id: string;
 }
