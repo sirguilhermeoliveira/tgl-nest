@@ -1,63 +1,36 @@
+import { generateFakeEmail } from './utils';
+
 export const user_EmailMock_1 = 'test_email@gmail.com';
 
 export const adminMock_1 = {
-  id: '1',
-  email: 'user1@example.com',
+  email: generateFakeEmail(),
   name: 'User 1',
-  isAdmin: true,
-  forgot_password_token: '',
-  forgot_password_expirationTime: new Date(),
   password: 'Abc123',
-  created_At: new Date(),
-  updated_At: new Date(),
 };
 
 export const userMock_1 = {
-  id: '3',
-  email: 'user_test@example.com',
+  id: '8A90SJA0SJA90SAAKA_0',
+  email: generateFakeEmail(),
   name: 'User 1',
-  isAdmin: false,
-  forgot_password_token: '',
-  forgot_password_expirationTime: new Date(),
   password: 'Abc123',
-  created_At: new Date(),
-  updated_At: new Date(),
 };
 
 export const userMock_2 = {
-  id: '3',
-  email: 'user2@example.com',
+  email: generateFakeEmail(),
   name: 'User 2',
-  isAdmin: false,
-  forgot_password_token: '',
-  forgot_password_expirationTime: new Date(),
   password: 'Abc123',
-  created_At: new Date(),
-  updated_At: new Date(),
 };
 
 export const usersMock = [
   {
-    id: '1',
+    email: generateFakeEmail(),
     name: 'User 1',
-    email: 'user1@example.com',
     password: 'password',
-    isAdmin: false,
-    forgot_password_token: '',
-    forgot_password_expirationTime: new Date(),
-    created_At: new Date(),
-    updated_At: new Date(),
   },
   {
-    id: '2',
+    email: generateFakeEmail(),
     name: 'User 2',
-    email: 'user2@example.com',
     password: 'password',
-    isAdmin: false,
-    forgot_password_token: '',
-    forgot_password_expirationTime: new Date(),
-    created_At: new Date(),
-    updated_At: new Date(),
   },
 ];
 

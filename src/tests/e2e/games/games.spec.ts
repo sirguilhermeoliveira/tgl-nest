@@ -48,7 +48,7 @@ describe('Games', () => {
       const token = responseLogin.body.access_token;
 
       const responseCreateGame = await request(app.getHttpServer())
-        .post(`games/${gameMock_1.id}`)
+        .delete(`games/${gameMock_1.id}`)
         .set('Authorization', `Bearer ${token}`)
         .expect(200);
       expect(responseCreateGame.body.message).toEqual('Game deleted succesfully!');
