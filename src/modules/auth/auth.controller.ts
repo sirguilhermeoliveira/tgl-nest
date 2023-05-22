@@ -4,7 +4,7 @@ import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { IsPublic } from './decorators/is-public.decorator';
 import { LocalAuthGuard } from './guards/local-auth.guard';
-import { LoginRequestBody } from './models/LoginRequestBody';
+import { LoginRequestBody } from './models/login-request-body';
 
 @Controller()
 @ApiTags('auth')
