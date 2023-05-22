@@ -34,7 +34,7 @@ describe('Bets', () => {
         .post('/bets')
         .set('Authorization', `Bearer ${token}`)
         .send({ ...betMock_1 })
-        .expect(200);
+        .expect(201);
       expect(responseBet.body.message).toEqual('Bet created succesfully!');
     });
   });

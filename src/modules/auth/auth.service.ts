@@ -12,12 +12,9 @@ export class AuthService {
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
   ) {}
-  login(user: LoginRequestBody): UserToken {
-    const payload = {
-      email: user.email,
-      password: user.password,
-    };
-    const jwtToken = this.jwtService.sign(payload);
+  async login(user: LoginRequestBody): Promise<UserToken> {
+    const userData = await this.userService.findByEmail(user.email);
+    const jwtToken = this.jwtService.sign(userData);
 
     return {
       access_token: jwtToken,

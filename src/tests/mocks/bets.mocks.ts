@@ -1,6 +1,6 @@
 export const betMock_1 = {
   id: '1',
-  user_id: '1',
+  user_id: 'TdqkTBPa1mzbev0v_Mmey',
   game_id: '1',
   bet_numbers: [1, 2, 3, 4, 5],
 };
