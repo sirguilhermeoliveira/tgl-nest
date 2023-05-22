@@ -110,9 +110,9 @@ export class UserService {
         context: { name: userName },
       });
       if (!createUserDto.isAdmin) {
-        return Promise.resolve({ message: 'User created succesfully!' });
+        return Promise.resolve({ message: 'User created successfully!' });
       } else {
-        return Promise.resolve({ message: 'Admin created succesfully!' });
+        return Promise.resolve({ message: 'Admin created successfully!' });
       }
     } catch (error) {
       throw new Error(error.message);

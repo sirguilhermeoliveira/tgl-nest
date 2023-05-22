@@ -35,7 +35,7 @@ describe('Games', () => {
         .set('Authorization', `Bearer ${token}`)
         .send({ ...gameMock_1 })
         .expect(200);
-      expect(responseCreateGame.body.message).toEqual('Game created succesfully!');
+      expect(responseCreateGame.body.message).toEqual('Game created successfully!');
     });
   });
   describe('/games (DELETE)', () => {
@@ -51,7 +51,7 @@ describe('Games', () => {
         .delete(`games/${gameMock_1.id}`)
         .set('Authorization', `Bearer ${token}`)
         .expect(200);
-      expect(responseCreateGame.body.message).toEqual('Game deleted succesfully!');
+      expect(responseCreateGame.body.message).toEqual('Game deleted successfully!');
     });
   });
 });

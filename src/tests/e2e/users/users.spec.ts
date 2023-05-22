@@ -27,7 +27,7 @@ describe('Users', () => {
         .post('/users')
         .send({ ...userMock_1 })
         .expect(200);
-      expect(responseCreateUser.body.message).toEqual('User created succesfully!');
+      expect(responseCreateUser.body.message).toEqual('User created successfully!');
     });
   });
 
@@ -44,7 +44,7 @@ describe('Users', () => {
         .delete(`users/${userMock_1.id}`)
         .set('Authorization', `Bearer ${token}`)
         .expect(200);
-      expect(responseCreateGame.body.message).toEqual('Deleted succesfully!');
+      expect(responseCreateGame.body.message).toEqual('Deleted successfully!');
     });
   });
 });

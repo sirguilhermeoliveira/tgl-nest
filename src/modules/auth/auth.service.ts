@@ -31,7 +31,7 @@ export class AuthService {
         throw new Error('Password is incorrect.');
       }
 
-      return Promise.resolve({ message: 'User validated succesfully!' });
+      return Promise.resolve({ message: 'User validated successfully!' });
     } catch (error) {
       throw new Error(error.message);
     }

@@ -22,7 +22,7 @@ describe('Bets', () => {
   });
 
   describe('/bets (POST)', () => {
-    it('should return bet created succesfully!', async () => {
+    it('should return bet created successfully!', async () => {
       const responseLogin = await request(app.getHttpServer())
         .post('/login')
         .send({ ...authMock_1 })
@@ -35,7 +35,7 @@ describe('Bets', () => {
         .set('Authorization', `Bearer ${token}`)
         .send({ ...betMock_1 })
         .expect(201);
-      expect(responseBet.body.message).toEqual('Bet created succesfully!');
+      expect(responseBet.body.message).toEqual('Bet created successfully!');
     });
   });
 });

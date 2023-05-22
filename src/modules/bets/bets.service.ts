@@ -22,7 +22,7 @@ export class BetsService {
       await this.prisma.bet.create({
         data: betData,
       });
-      return Promise.resolve({ message: 'Bet created succesfully!' });
+      return Promise.resolve({ message: 'Bet created successfully!' });
     } catch (error) {
       throw new Error(error.message);
     }
