@@ -2,8 +2,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
 
 import { AppModule } from '../../../app.module';
-import { authMock_1 } from '../../fakes/auth.mocks';
-import { gameMock_1 } from '../../fakes/games.mocks';
+import { authMock_1 } from '../../fakes/auth.fakes';
+import { gameMock_1 } from '../../fakes/games.fakes';
 
 describe('Games', () => {
   let app: any;
