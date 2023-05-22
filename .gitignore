@@ -2,7 +2,8 @@
 /dist
 /node_modules
 /.env
-/prisma
+/prisma/migrations/*
+/prisma/sqlite
 
 # Logs
 logs
