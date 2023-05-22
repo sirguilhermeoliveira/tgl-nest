@@ -30,13 +30,11 @@
 
      RF07. Create a scheduler to run every day at 09:00, triggering emails only to players who haven't bet within 1 week prior to the current day inviting them to place a bet
 
-# 📋 Requirements for running project
+# 📋 Requirements for running project without Docker
 
 Node 14.18.0+
 
-Interminal use: yarn
-
-# 🛠️ Run project without docker
+Clone the repository
 
 In terminal use: yarn && yarn start
 
@@ -53,3 +51,5 @@ docker run -p 3000:3000 -d tgl-nest
 docker-compose up -d
 
 After that process you can use only "docker-compose up" to open the project.
+
+Them use npx prisma migrate dev

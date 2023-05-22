@@ -1,23 +1,29 @@
-# Use Node.js 14 as the base image
-FROM node:14
+# Stage 1: Build the application
+FROM node:14 AS builder
 
-# Set working directory inside the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the container
-COPY package*.json ./
+COPY package.json .
+COPY yarn.lock .
 
-# Install dependencies
-RUN npm install --production
+RUN yarn install --frozen-lockfile
 
-# Copy source code to the container
 COPY . .
 
-# Build the project
-RUN npm run build
+RUN yarn build
 
-# Expose the port on which the server will run
+# Stage 2: Create the production image
+FROM node:14-alpine
+
+WORKDIR /app
+
+COPY package.json .
+COPY yarn.lock .
+
+RUN yarn install --frozen-lockfile --production
+
+COPY --from=builder /app/dist ./dist
+
 EXPOSE 3000
 
-# Start the server
-CMD ["npm", "run", "start:prod"]
+CMD ["node", "./dist/main"]
