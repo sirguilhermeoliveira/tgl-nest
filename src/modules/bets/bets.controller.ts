@@ -2,9 +2,9 @@ import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/commo
 import { ApiTags } from '@nestjs/swagger';
 
 import { CurrentUser } from '../..//modules/auth/decorators/current-user.decorator';
+import { PaginationParams } from '../../@shared/dto/pagination-params.dto';
 import { IsAdmin } from '../../modules/auth/decorators/is-admin.decorator';
 import { User } from '../../modules/users/entities/user.entity';
-import { PaginationParams } from '../../shared/dto/pagination-params.dto';
 import { BetsService } from './bets.service';
 import { CreateBetDto } from './dto/create-bet.dto';
 
