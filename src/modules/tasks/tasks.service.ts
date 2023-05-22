@@ -23,7 +23,7 @@ export class TasksService {
             to: user.email,
             from: 'noreply@nestjs.com',
             subject: 'Come back to TGL Nest!',
-            template: 'taskBets',
+            template: 'task-bets',
             context: {
               name: user.name,
             },

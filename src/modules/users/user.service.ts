@@ -76,7 +76,7 @@ export class UserService {
         to: email,
         from: 'noreply@nestjs.com',
         subject: 'Welcome to TGL Nest!',
-        template: 'forgotPassword',
+        template: 'forgot-password',
         context: {
           forgot_password_token: code,
           forgot_password_expirationTime: expirationTime,
@@ -106,7 +106,7 @@ export class UserService {
         to: createUserDto.email,
         from: 'noreply@nestjs.com',
         subject: 'Welcome to TGL Nest! ',
-        template: 'createdEmail',
+        template: 'created-email',
         context: { name: userName },
       });
       if (!createUserDto.isAdmin) {
