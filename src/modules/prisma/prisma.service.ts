@@ -1,8 +1,9 @@
-import { INestApplication, Injectable, OnModuleInit } from '@nestjs/common';
+import { INestApplication, Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit {
+  private readonly logger = new Logger(PrismaService.name);
   async onModuleInit() {
     await this.$connect();
     return { message: 'Server is connecting...' };
@@ -13,8 +14,9 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
       try {
         await app.close();
         return { message: 'Server is shutting down...' };
-      } catch {
+      } catch (error) {
         this.$disconnect();
+        this.logger.error(`Error during shutdown: ${error.message}`);
         return { message: 'Failed to shutdown server' };
       }
     });

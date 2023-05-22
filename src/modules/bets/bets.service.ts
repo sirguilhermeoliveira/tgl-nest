@@ -1,4 +1,4 @@
-import { Body, Injectable } from '@nestjs/common';
+import { Body, Injectable, Logger } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { nanoid } from 'nanoid';
 
@@ -7,6 +7,8 @@ import { CreateBetDto } from './dto/create-bet.dto';
 
 @Injectable()
 export class BetsService {
+  private readonly logger = new Logger(BetsService.name);
+
   constructor(private readonly prisma: PrismaService) {}
   async create(@Body() createBetDto: CreateBetDto, user) {
     try {
@@ -24,6 +26,7 @@ export class BetsService {
       });
       return Promise.resolve({ message: 'Bet created successfully!' });
     } catch (error) {
+      this.logger.error(`Error during create bet: ${error.message}`);
       throw new Error(error.message);
     }
   }
@@ -105,6 +108,7 @@ export class BetsService {
       });
       return Promise.resolve({ message: 'Bet deleted successfully!' });
     } catch (error) {
+      this.logger.error(`Error during deleting a bet: ${error.message}`);
       throw new Error(error.message);
     }
   }

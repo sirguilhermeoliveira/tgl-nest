@@ -1,4 +1,4 @@
-import { Body, Injectable } from '@nestjs/common';
+import { Body, Injectable, Logger } from '@nestjs/common';
 import { MailerService } from '@nestjs-modules/mailer';
 import * as bcrypt from 'bcrypt';
 import { randomBytes } from 'crypto';
@@ -12,6 +12,8 @@ import { User } from './entities/user.entity';
 
 @Injectable()
 export class UserService {
+  private readonly logger = new Logger(UserService.name);
+
   constructor(
     private readonly prisma: PrismaService,
     private readonly mailerService: MailerService,
@@ -48,6 +50,7 @@ export class UserService {
 
       return { message: 'Password reset successfully!' };
     } catch (error) {
+      this.logger.error(`Error on reset password: ${error.message}`);
       throw new Error(error.message);
     }
   }
@@ -85,6 +88,7 @@ export class UserService {
 
       return { message: `Code sent successfully for ${email}` };
     } catch (error) {
+      this.logger.error(`Error on sendCode: ${error.message}`);
       throw new Error(error.message);
     }
   }
@@ -115,6 +119,7 @@ export class UserService {
         return Promise.resolve({ message: 'Admin created successfully!' });
       }
     } catch (error) {
+      this.logger.error(`Error on create user: ${error.message}`);
       throw new Error(error.message);
     }
   }
@@ -135,7 +140,7 @@ export class UserService {
 
       return { message: 'Deleted successfully!' };
     } catch (error) {
-      // handle errors gracefully
+      this.logger.error(`Error on delete user: ${error.message}`);
       throw new Error(error.message);
     }
   }
@@ -165,6 +170,7 @@ export class UserService {
 
       return { message: 'Password changed successfully!' };
     } catch (error) {
+      this.logger.error(`Error on change password: ${error.message}`);
       throw new Error(error.message);
     }
   }

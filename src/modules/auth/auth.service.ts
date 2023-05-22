@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 
@@ -8,17 +8,24 @@ import { UserToken } from './models/user-token';
 
 @Injectable()
 export class AuthService {
+  private readonly logger = new Logger(AuthService.name);
+
   constructor(
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
   ) {}
   async login(user: LoginRequestBody): Promise<UserToken> {
-    const userData = await this.userService.findByEmail(user.email);
-    const jwtToken = this.jwtService.sign(userData);
+    try {
+      const userData = await this.userService.findByEmail(user.email);
+      const jwtToken = this.jwtService.sign(userData);
 
-    return {
-      access_token: jwtToken,
-    };
+      return {
+        access_token: jwtToken,
+      };
+    } catch (error) {
+      this.logger.error(`Error during login: ${error.message}`);
+      throw new Error('Failed to login.');
+    }
   }
   async validateUser(email: string, password: string) {
     try {
@@ -33,7 +40,8 @@ export class AuthService {
 
       return Promise.resolve({ message: 'User validated successfully!' });
     } catch (error) {
-      throw new Error(error.message);
+      this.logger.error(`Error during user validation: ${error.message}`);
+      throw new Error('Failed to validate user.');
     }
   }
 }
