@@ -1,10 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
-import { PaginationParams } from '../../@shared/dto/pagination-params.dto';
 import { CurrentUser } from '../../modules/auth/decorators/current-user.decorator';
 import { IsAdmin } from '../../modules/auth/decorators/is-admin.decorator';
 import { IsPublic } from '../../modules/auth/decorators/is-public.decorator';
+import { PaginationParams } from '../@shared/dto/pagination-params.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ResetPasswordUserDto } from './dto/reset-password-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
