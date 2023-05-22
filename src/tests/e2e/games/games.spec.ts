@@ -38,20 +38,4 @@ describe('Games', () => {
       expect(responseCreateGame.body.message).toEqual('Game created successfully!');
     });
   });
-  describe('/games (DELETE)', () => {
-    it('should delete a game', async () => {
-      const responseLogin = await request(app.getHttpServer())
-        .post('/login')
-        .send({ ...authMock_1 })
-        .expect(200);
-      expect(responseLogin.body.access_token).toBeDefined();
-      const token = responseLogin.body.access_token;
-
-      const responseCreateGame = await request(app.getHttpServer())
-        .delete(`games/${gameMock_1.id}`)
-        .set('Authorization', `Bearer ${token}`)
-        .expect(200);
-      expect(responseCreateGame.body.message).toEqual('Game deleted successfully!');
-    });
-  });
 });

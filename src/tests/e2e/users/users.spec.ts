@@ -31,8 +31,8 @@ describe('Users', () => {
     });
   });
 
-  describe('/games (DELETE)', () => {
-    it('should delete a game', async () => {
+  describe('/users (DELETE)', () => {
+    it('should delete a user', async () => {
       const responseLogin = await request(app.getHttpServer())
         .post('/login')
         .send({ ...authMock_1 })

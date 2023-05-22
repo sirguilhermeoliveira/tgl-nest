@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid';
+
 import { generateFakeEmail } from './utils';
 
 export const user_EmailMock_1 = 'test_email@gmail.com';
@@ -9,7 +11,7 @@ export const adminMock_1 = {
 };
 
 export const userMock_1 = {
-  id: '8A90SJA0SJA90SAAKA_0',
+  id: nanoid(),
   email: generateFakeEmail(),
   name: 'User 1',
   password: 'Abc123',
