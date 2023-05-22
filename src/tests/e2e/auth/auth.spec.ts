@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
 
 import { AppModule } from '../../../app.module';
-import { authMock_1 } from '../../mocks/auth.mocks';
+import { authMock_1 } from '../../fakes/auth.mocks';
 
 describe('Login', () => {
   let app: any;

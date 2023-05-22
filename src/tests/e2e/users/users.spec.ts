@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { authMock_1 } from 'src/tests/mocks/auth.mocks';
 import * as request from 'supertest';
 
 import { AppModule } from '../../../app.module';
-import { userMock_1 } from '../../mocks/users.mocks';
+import { authMock_1 } from '../../fakes/auth.mocks';
+import { userMock_1 } from '../../fakes/users.mocks';
 
 describe('Users', () => {
   let app: any;
@@ -26,7 +26,7 @@ describe('Users', () => {
       const responseCreateUser = await request(app.getHttpServer())
         .post('/users')
         .send({ ...userMock_1 })
-        .expect(200);
+        .expect(201);
       expect(responseCreateUser.body.message).toEqual('User created successfully!');
     });
   });

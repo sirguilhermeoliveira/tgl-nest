@@ -2,8 +2,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
 
 import { AppModule } from '../../../app.module';
-import { authMock_1 } from '../../../tests/mocks/auth.mocks';
-import { gameMock_1 } from '../../../tests/mocks/games.mocks';
+import { authMock_1 } from '../../fakes/auth.mocks';
+import { gameMock_1 } from '../../fakes/games.mocks';
 
 describe('Games', () => {
   let app: any;
@@ -34,7 +34,7 @@ describe('Games', () => {
         .post('/games')
         .set('Authorization', `Bearer ${token}`)
         .send({ ...gameMock_1 })
-        .expect(200);
+        .expect(201);
       expect(responseCreateGame.body.message).toEqual('Game created successfully!');
     });
   });

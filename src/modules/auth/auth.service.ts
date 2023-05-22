@@ -41,7 +41,7 @@ export class AuthService {
       return Promise.resolve({ message: 'User validated successfully!' });
     } catch (error) {
       this.logger.error(`Error during user validation: ${error.message}`);
-      throw new Error('Failed to validate user.');
+      throw new Error(error.message);
     }
   }
 }
