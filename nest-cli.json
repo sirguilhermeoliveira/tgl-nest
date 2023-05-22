@@ -4,6 +4,6 @@
   "sourceRoot": "src",
   "compilerOptions": {
     "deleteOutDir": true,
-    "assets": [ "views"], "watchAssets": true }
+    "assets": [ "templates"], "watchAssets": true }
   }
 

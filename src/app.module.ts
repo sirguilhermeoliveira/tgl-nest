@@ -35,7 +35,7 @@ import { UserModule } from './modules/users/user.module';
         from: 'tglnest@gmail.com',
       },
       template: {
-        dir: __dirname + '/views',
+        dir: __dirname + '/templates',
         adapter: new PugAdapter(),
         options: {
           strict: true,
